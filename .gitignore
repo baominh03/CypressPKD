@@ -11,5 +11,5 @@ cypress/screenshots/*
 cypress/videos/*
 node_modules/*
 .vscode/*
-
+package-lock.json
 # End of https://www.toptal.com/developers/gitignore/api/cypressio

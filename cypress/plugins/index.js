@@ -18,24 +18,9 @@ const extensionLoader = require('cypress-browser-extension-plugin/loader');
 /**
  * @type {Cypress.PluginConfig}
  */
- module.exports = (on, config) => {
+module.exports = (on, config) => {
   on('before:browser:launch', (browser = {}, launchOptions) => {
-    // launchOptions.extensions.push(path.resolve(__dirname, "../../../../MetaMask"))
-    // launchOptions.extensions.push('D:/WORKING AREA/Learning Cypress/CypressAutomation/cypress/MetaMask')
-    // return launchOptions
-    // on('before:browser:launch', extensionLoader.load('D:/WORKING AREA/Learning Cypress/CypressAutomation/cypress/MetaMask'))
+    
   })
-  // D:\WORKING AREA\Learning Cypress\CypressAutomation\cypress
-  }
-// module.exports = (on) => {
-//   on('before:browser:launch', extensionLoader.load('/path/to/your/extension'));
-// }
- 
-// // cypress/support/command.js
-// const addExtensionCommands = require('cypress-browser-extension-plugin/commands');
-// addExtensionCommands(Cypress);
- 
-// // cypress/integration/my_spec.js or cypress/support/index.js
-// beforeEach(() => {
-//   cy.clearExtensionStorage('local');
-// });
+
+}

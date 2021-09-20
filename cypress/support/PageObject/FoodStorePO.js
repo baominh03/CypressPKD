@@ -34,5 +34,21 @@ export class FoodStorePO {
         return cy.get('.food_shopping--button-home', { timeout : 10000})
     }
 
+    getElementBoughtFood(){
+        return cy.get('.food_content--name', { timeout : 10000})
+    }
+
+    getElementRecoveryNumber() {
+        return cy.get('.food_tooltip--content span', { timeout : 10000})
+    }
+
+    getElementPetStamina() {
+        return cy.get('.food_large-character--vitality-number', { timeout : 10000})
+    }
+
+    getElementFeedButton() {
+        return cy.get('.food_large-character--button-feed', { timeout : 10000})
+    }
+
 } 
 export const foodStorePO = new FoodStorePO()

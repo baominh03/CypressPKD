@@ -12,13 +12,14 @@ import { formLayoutPA } from "../support/PageAction/FormLayoutPA"
 describe('first suite: login PKD', () => {
 
 
-    it('Step 1 navigate to PKD', () => {
+    it('Step 1 navigate to PKD', async () => {
         loginPA.visitPetKingDom();
         loginPA.loginPKD();
         homePagePA.selectFoodStore();
         foodStorePA.clickToBuyFood()
         foodStorePA.buyFoodItemFromShop()
         foodStorePA.clickGoHomeButton()
+        foodStorePA.feedThePet(3, 2)
     })
 
 
