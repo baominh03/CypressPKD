@@ -1,0 +1,15 @@
+{
+  "name": "cypressautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BaoLe",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^8.4.1",
+    "cypress-browser-extension-plugin": "^0.1.0"
+  }
+}
