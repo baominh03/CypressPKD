@@ -11,9 +11,9 @@ export class LoginPA {
     }
 
     loginPKD() {
-        cy.fixture('petkingdom').then((petkingdom) => {
+        cy.fixture('pkdUser').then((petkingdom) => {
             loginPO.getElementPasswordField().should('be.visible').then(() => {
-                loginPO.getElementPasswordField().type(petkingdom.password)
+                loginPO.getElementPasswordField().type(petkingdom.password, { log: false })
                 loginPO.getElementSubmitButton().click()
             })
         })

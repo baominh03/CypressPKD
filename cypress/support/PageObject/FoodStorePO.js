@@ -22,7 +22,7 @@ export class FoodStorePO {
         return cy.get('.food_list-buy--full-food .food_content--flex .food_content--item', { timeout : 10000})
     }
 
-    getBuyButtonFrfromShop(){
+    getBuyButtonFromShop(){
         return cy.get('.food_shopping--button-buy', { timeout : 10000})
     }
 
@@ -50,5 +50,6 @@ export class FoodStorePO {
         return cy.get('.food_large-character--button-feed', { timeout : 10000})
     }
 
+    //.action__accept
 } 
 export const foodStorePO = new FoodStorePO()
