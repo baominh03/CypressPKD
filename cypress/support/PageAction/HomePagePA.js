@@ -7,9 +7,18 @@ import { foodStorePO } from "../PageObject/FoodStorePO"
 export class HomePagePA {
 
     selectFoodStore() {
-        loginPO.getElementLoginSucceed().should('be.visible').then(() => {
+        homePagePO.getElementHeroInfo().should('be.visible', { timeout: 20000 }).then(() => {
             homePagePO.getElementFoodStoreMenu().trigger('mouseover').click()
         })
+    }
+
+    selectFoodStoreDirectly() {
+        homePagePO.getElementFoodStoreMenu().trigger('mouseover').click()
+
+    }
+
+    selectBattleField() {
+        homePagePO.getElementBattleFieldMenu().trigger('mouseover').click()
     }
 
 }

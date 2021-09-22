@@ -13,6 +13,21 @@ export class LoginPO {
         return cy.get('.incubator_character', { timeout: 10000 })
     }
 
+    getElementLoginWithScholarMode() {
+        return cy.get('.action__scholarship', { timeout: 30000 })
+    }
+
+    getElementLoginWithWalletMode() {
+        return cy.get('.action__wallet', { timeout: 10000 })
+    }
+
+    getElementLoginSucceedWithScholarMode() {
+        return cy.get('.require-message', { timeout: 10000 })
+    }
+
+    getElementUserField() {
+        return cy.get('[type="text"]', { timeout: 10000 })
+    }
 
 }
 

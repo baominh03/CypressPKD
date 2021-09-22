@@ -13,7 +13,7 @@ export class MetamaskPA {
     loginMetaMask() {
         // this.visitMetamask()
         cy.wait(5)
-        metaMaskPO.getElementPKDUrl().type('Baobao@2709', { force: true }).type('{enter}')     
+        metaMaskPO.getElementPKDUrl().type('Baobao@2709', { force: true }).type('{enter}')
     }
 
 

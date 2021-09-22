@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run_spec": "npx cypress run --spec 'cypress/integration/farm.spec.js' --headed",
+    "cy:run_spec_01": "npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed",
+    "cy:chrome": "--browser chrome",
+    "cy:run_browser": "npm run cy:run_spec --browser chrome"
   },
   "author": "BaoLe",
   "license": "ISC",

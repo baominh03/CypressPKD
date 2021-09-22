@@ -1,36 +1,36 @@
 /// <reference types="Cypress" />
+import { battleFieldPO } from "../PageObject/BattleFieldPO"
 import { foodStorePO } from "../PageObject/FoodStorePO"
 import { webElementSupport } from "../Ultil/WebElementSupport"
+import { battleFieldPA } from "./BattleFieldPA"
+import { homePagePA } from "./HomePagePA"
 
 
 export class FoodStorePA {
     clickToBuyFood() {
-        foodStorePO.getElementPetIDUnderFoodStore().should('be.visible').then(() => {
-            foodStorePO.getElementClick2BuyFood().trigger('mouseover').click()
+        foodStorePO.getElementPetIDUnderFoodStore().then(() => {
+            foodStorePO.getElementClick2BuyFood().trigger('mouseover', { timeout: 10000 }).click()
         })
     }
 
     click2FoodItemFromShop() {
-        foodStorePO.getFoodItemFromShop().first().trigger('mouseover').click()
+        foodStorePO.getFoodItemFromShop().first().trigger('mouseover', { timeout: 10000 }).click()
     }
 
-    buyFoodItemFromShop() {
-        foodStorePO.getFoodItemFromShop().should('be.visible').then(() => {
-            cy.log('')
-            foodStorePO.getAvailableFoodItemFromShop().then((availableFood) => {
-                cy.log('THERE ARE [' + availableFood.length + '] AVAILABLE FOOD')
-                for (let i = 0; i < availableFood.length; i++) {
-                    foodStorePO.getFoodItemFromShop().first().trigger('mouseover').click().then(() => {
-                        cy.log('CLICKED ON AVAILABLE FOOD: [' + i + ']')
-                        cy.log('AVAILABLE FOOD ' + (availableFood.length - (i + 1)))
-                        foodStorePO.getBuyButtonFromShop().trigger('mouseover').click()
+    buyFoodItemFromShop(waitInMs = 2000) {
+        foodStorePO.getFoodItemFromShop().should('be.visible', { timeout: 20000 }).then(() => {
+            cy.wait(waitInMs).then(() => {
+                if (webElementSupport.checkElementExist(foodStorePO.getAvailableFoodItemFromShopString())) {
+                    foodStorePO.getAvailableFoodItemFromShop().then((availableFood) => {
+                        cy.log('THERE ARE [' + availableFood.length + '] AVAILABLE FOOD')
+                        for (let i = 0; i < availableFood.length; i++) {
+                            foodStorePO.getFoodItemFromShop().first().trigger('mouseover', { timeout: 10000 }).click().then(() => {
+                                cy.log('CLICKED ON FOOD: [' + i + ']\n => AVAILABLE FOOD REMAINING [' + (availableFood.length - (i + 1) + '] item(s)'))
+                                foodStorePO.getBuyButtonFromShop().trigger('mouseover').click()
+                            })
+                        }
                     })
                 }
-                Cypress.on('uncaught:exception', (err, runnable) => {
-                    // returning false here prevents Cypress from
-                    // failing the test
-                    return false
-                })
             })
         })
     }
@@ -40,22 +40,11 @@ export class FoodStorePA {
     }
 
     selectPet(index) {
-        foodStorePO.getElementPetIDUnderFoodStore().should('be.visible').then(() => {
+        foodStorePO.getElementPetIDUnderFoodStore().scrollIntoView().should('be.visible', { timeout: 20000 }).then(() => {
             cy.log('Selected pet [' + index + ']')
             foodStorePO.getElementPetIDUnderFoodStore().eq(index - 1).click()
         })
         return foodStorePO.getElementPetIDUnderFoodStore()
-    }
-
-    getFoodInformation() {
-        foodStorePO.getElementBoughtFood().first().trigger('mouseover').wait(1000).then(() => {
-            foodStorePO.getElementRecoveryNumber().invoke('text').then((number) => {
-                cy.log('@@@@@@ Recovery: ' + length)
-            })
-            foodStorePO.getElementRecoveryNumber().invoke('text').then((number) => {
-                return number
-            })
-        })
     }
 
     clickOnFood() {
@@ -63,19 +52,19 @@ export class FoodStorePA {
     }
 
     logicFeedPet(primaryPet, fuckPet) {
-        foodStorePO.getElementBoughtFood().first().trigger('mouseover').wait(1000).then(() => {
+        foodStorePO.getElementBoughtFood().first().trigger('mouseover', { timeout: 10000 }).wait(1000).then(() => {
             foodStorePO.getElementRecoveryNumber().then((recoveryElement) => {
                 cy.log('Food Recovery Number: ' + recoveryElement.text())
                 if (recoveryElement.text() >= 0) {
                     this.selectPet(primaryPet).then(() => {
                         cy.log('Selected primary pet')
                         foodStorePO.getElementPetStamina().then((stamina) => {
-                            cy.log('PRIMARY PET STAMINA BEFORE: [' + stamina.text() + ']')
+                            cy.log('PRIMARY PET STAMINA BEFORE FEEDING: [' + stamina.text() + ']')
                             if (stamina.text().split('/')[0] < 100) {
                                 foodStorePO.getElementPetStamina().should('be.visible').then(() => {
                                     foodStorePO.getElementBoughtFood().first().click().then(() => {
-                                        foodStorePO.getElementFeedButton().click().wait(500)
-                                        cy.log('PRIMARY PET STAMINA AFTER: [' + (Number(stamina.text().split('/')[0]) + Number(recoveryElement.text())) + '/100]')
+                                        foodStorePO.getElementFeedButton().click()
+                                        cy.log('PRIMARY PET STAMINA AFTER FEEDING: [' + (Number(stamina.text().split('/')[0]) + Number(recoveryElement.text())) + '/100]')
                                     })
                                 })
                             }
@@ -84,9 +73,9 @@ export class FoodStorePA {
                 } else {
                     this.selectPet(fuckPet).then(() => {
                         cy.log('Selected Fuck pet to eat boom')
-                        foodStorePO.getElementPetStamina().should('be.visible').then(() => {
+                        foodStorePO.getElementPetStamina().should('be.visible', { timeout: 20000 }).then(() => {
                             foodStorePO.getElementBoughtFood().first().click().then(() => {
-                                foodStorePO.getElementFeedButton().click().wait(500)
+                                foodStorePO.getElementFeedButton().click()
                             })
                         })
                     })
@@ -94,36 +83,56 @@ export class FoodStorePA {
             })
         })
 
+
     }
 
 
-    feedThePet(primaryPet, fuckPet) {
-        foodStorePO.getElementBoughtFood().then((element) => {
-            for (let i = 0; i < element.length; i++) {
-                this.logicFeedPet(primaryPet, fuckPet)
+    feedThePet(primaryPet, fuckPet, waitInMS = 3000) {
+        cy.wait(waitInMS).then(() => {
+            if (webElementSupport.checkElementExist(foodStorePO.getElementBoughtFoodString())) {
+                foodStorePO.getElementBoughtFood().then((element) => {
+                    cy.log('Lets Buy some FOOD for our fucking pets')
+                    for (let i = 0; i < element.length; i++) {
+                        this.logicFeedPet(primaryPet, fuckPet)
+                    }
+                })
+            } else {
+                cy.log('Out of Food, please wait go to buy some more')
+                cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
+                cy.wait(480000)
             }
         })
+
     }
 
-    feedThePetTo100(primaryPet, fuckPet) {
-            this.selectPet(primaryPet).then(() => {
-                foodStorePO.getElementPetStamina().then((stamina) => {
-                    cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
-                    if (stamina.text().split('/')[0] < 100) {
-                        cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
-                        this.clickToBuyFood()
-                        this.buyFoodItemFromShop()
-                        this.clickGoHomeButton()
-                        this.feedThePet(primaryPet, fuckPet)
-                        cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
-                        cy.wait(480000).then(() => {
-                            this.feedThePetTo100(primaryPet, fuckPet)
-                        })
-                    }
-
-                })
+    feedThePetTo100(primaryPet, fuckPet, dificultLevel) {
+        this.selectPet(primaryPet).then(() => {
+            foodStorePO.getElementPetStamina().scrollIntoView().then((stamina) => {
+                cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
+                if (stamina.text().split('/')[0] < 100) {
+                    cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
+                    this.clickToBuyFood()
+                    this.buyFoodItemFromShop()
+                    this.clickGoHomeButton()
+                    this.feedThePet(primaryPet, fuckPet)
+                    this.feedThePetTo100(primaryPet, fuckPet)
+                } else {
+                    homePagePA.selectBattleField()
+                    battleFieldPA.changePetToFight(primaryPet)
+                    cy.wait(6000).then(() => {
+                        battleFieldPA.selectEnemies(dificultLevel)
+                    }).then(() => {
+                        battleFieldPA.fightEnemy()
+                    })
+                }
             })
-
+        }).then(() => {
+            // cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
+            // cy.wait(480000).then(() => {
+                homePagePA.selectFoodStoreDirectly();
+                this.feedThePetTo100(primaryPet, fuckPet)
+            // })
+        })
     }
 
 

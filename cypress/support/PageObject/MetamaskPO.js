@@ -14,7 +14,7 @@ export class MetaMaskPO {
         return cy.get('.login_container--title')
     }
 
-    
+
 
 }
 
