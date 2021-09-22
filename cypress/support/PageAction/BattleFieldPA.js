@@ -50,7 +50,7 @@ export class BattleFieldPA {
 
 
 
-    fightEnemy(waitWinningInMS = 10000, waitAlertInMs = 2000) {
+    fightEnemy(waitWinningInMS = 7000, waitAlertInMs = 1500) {
         if (webElementSupport.checkElementExist(battleFieldPO.getElementEnemiesString()) == true) {
             cy.log('[Enemies list] displayed: lets fight')
             battleFieldPO.getElementCurrentFightButton().trigger('mouseover', { timeout: 10000 }).click().then(() => {

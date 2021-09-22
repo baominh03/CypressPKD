@@ -40,7 +40,7 @@ export class FoodStorePA {
     }
 
     selectPet(index) {
-        foodStorePO.getElementPetIDUnderFoodStore().scrollIntoView().should('be.visible', { timeout: 20000 }).then(() => {
+        foodStorePO.getElementPetIDUnderFoodStore().should('be.visible', { timeout: 20000 }).then(() => {
             cy.log('Selected pet [' + index + ']')
             foodStorePO.getElementPetIDUnderFoodStore().eq(index - 1).click()
         })
@@ -107,7 +107,7 @@ export class FoodStorePA {
 
     feedThePetTo100(primaryPet, fuckPet, dificultLevel) {
         this.selectPet(primaryPet).then(() => {
-            foodStorePO.getElementPetStamina().scrollIntoView().then((stamina) => {
+            foodStorePO.getElementPetStamina().then((stamina) => {
                 cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
                 if (stamina.text().split('/')[0] < 100) {
                     cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
