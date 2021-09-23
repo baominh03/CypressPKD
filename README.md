@@ -8,7 +8,7 @@ Before you continue, ensure you meet the following requirements:
 * Visual Code: https://code.visualstudio.com/
 * Latest nodejs:  [NodeJS Pages](https://nodejs.org/en/download/)
 * Latest npm: ```npm install -g npm```
-* Install cypress at current working directory: ```npm install cypress --save-dev```
+* Install cypress at current working directory: ```npm install cypress --save-dev``` or [Cypress installation](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
 
 
 ## **Execution**
