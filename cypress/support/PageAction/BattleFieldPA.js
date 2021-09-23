@@ -7,7 +7,7 @@ export class BattleFieldPA {
 
     changePetToFight(primaryPet) {
         battleFieldPO.getElementChangePet().trigger('mouseover', { timeout: 10000 }).click().then(() => {
-            battleFieldPO.getElementPopupSelectPet().should('be.visible', { timeout: 20000 }).then(() => {
+            battleFieldPO.getElementAcceptButtonAtPetSelection().should('be.visible', { timeout: 20000 }).then(() => {
                 battleFieldPO.getElementSelectButton().eq(primaryPet - 1).click().then(() => {
                     cy.wait(500).then(() => {
                         if (webElementSupport.checkElementExist(battleFieldPO.getElementAcceptButtonAtPetSelectionString())) {

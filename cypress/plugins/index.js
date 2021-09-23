@@ -14,13 +14,14 @@
 
 const { log } = require('console');
 const path = require('path');
-const extensionLoader = require('cypress-browser-extension-plugin/loader');
+
 /**
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
   on('before:browser:launch', (browser = {}, launchOptions) => {
-    
+    launchOptions.extensions.push(path.resolve(__dirname, "../../../MetaMask"))
+    return launchOptions
   })
 
 }

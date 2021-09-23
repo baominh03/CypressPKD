@@ -9,7 +9,10 @@ import { homePagePA } from "./HomePagePA"
 export class FoodStorePA {
     clickToBuyFood() {
         foodStorePO.getElementPetIDUnderFoodStore().then(() => {
-            foodStorePO.getElementClick2BuyFood().trigger('mouseover', { timeout: 10000 }).click()
+            cy.wait(1000).then(() => {
+                foodStorePO.getElementClick2BuyFood().should('be.visible', { timeout: 20000 }).click()
+            })
+            
         })
     }
 
@@ -17,7 +20,7 @@ export class FoodStorePA {
         foodStorePO.getFoodItemFromShop().first().trigger('mouseover', { timeout: 10000 }).click()
     }
 
-    buyFoodItemFromShop(waitInMs = 2000) {
+    buyFoodItemFromShop(waitInMs = 3000) {
         foodStorePO.getFoodItemFromShop().should('be.visible', { timeout: 20000 }).then(() => {
             cy.wait(waitInMs).then(() => {
                 if (webElementSupport.checkElementExist(foodStorePO.getAvailableFoodItemFromShopString())) {
@@ -129,8 +132,8 @@ export class FoodStorePA {
         }).then(() => {
             // cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
             // cy.wait(480000).then(() => {
-                homePagePA.selectFoodStoreDirectly();
-                this.feedThePetTo100(primaryPet, fuckPet)
+            homePagePA.selectFoodStoreDirectly();
+            this.feedThePetTo100(primaryPet, fuckPet)
             // })
         })
     }
