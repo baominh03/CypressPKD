@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-import { LoginPA, loginPA } from "../support/PageAction/LoginPA"
+import { loginPA } from "../support/PageAction/LoginPA"
 import { homePagePA } from "../support/PageAction/HomePagePA"
 import { foodStorePA } from "../support/PageAction/FoodStorePA"
 
@@ -15,7 +15,7 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
         })
     })
 
-    it('MMMMM', async () => {
+    it('MMMMM', () => {
         cy.log('END')
 
     })

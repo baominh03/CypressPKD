@@ -1,0 +1,7 @@
+{
+  "email": "yourEmail",
+  "password": "yourPassword",
+  "primaryPet": 3,
+  "fuckPet": 1,
+  "dificulty": "easy"
+}
