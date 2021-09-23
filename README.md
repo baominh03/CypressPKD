@@ -33,8 +33,8 @@ npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed --browser ch
 3. Manualy **set up** and **connect** Metamask wallet to petkingdom **for the first time**:
 ![image](https://user-images.githubusercontent.com/39981269/134517213-91378b09-3277-41a5-af77-4e646a186e58.png)
 
-* Import or create new wallet 
-* Add Binance Smart Chain network: https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain
+* Import or create new wallet [How to import wallet MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account), [How to create new wallet MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015289452-How-to-create-an-additional-account-in-your-MetaMask-wallet) 
+* Add Binance Smart Chain network: [How to add BNB network](https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain)
 ![image](https://user-images.githubusercontent.com/39981269/134517959-ef9b3996-5cab-4e18-ab0c-ec1893a1cf2a.png)
 ![image](https://user-images.githubusercontent.com/39981269/134518014-cad49c8e-551a-4018-8982-023c5fe7d35d.png)
 
