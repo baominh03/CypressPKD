@@ -7,5 +7,4 @@ https://bscscan.com
 
 
 npx cypress run --spec 'cypress/integration/farm.spec.js' --headed --browser chrome --no-exit --record --key 95d6afaf-0cff-4169-9423-bd06c98cad2a
-
 npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed --browser chrome --no-exit --record --key 95d6afaf-0cff-4169-9423-bd06c98cad2a
