@@ -42,13 +42,23 @@ export class FoodStorePO {
         return cy.get('.food_shopping--button-home', { timeout: 10000 })
     }
 
-    getElementBoughtFood() {
-        return cy.get(this.getElementBoughtFoodString(), { timeout: 10000 })
+    // getElementBoughtFood() {
+    //     return cy.get(this.getElementBoughtFoodString(), { timeout: 10000 })
+    // }
+
+    // getElementBoughtFoodString() {
+    //     return '.food_content--name'
+    // }
+
+    getElementFoodNoneItem() {
+        return cy.get(this.getElementFoodNoneItemString(), { timeout: 10000 })
     }
 
-    getElementBoughtFoodString() {
-        return '.food_content--name'
+    getElementFoodNoneItemString() {
+        return '.food_content--none-item '
     }
+
+
 
     getElementRecoveryNumber() {
         return cy.get('.food_tooltip--content span', { timeout: 10000 })
@@ -62,6 +72,15 @@ export class FoodStorePO {
         return cy.get('.food_large-character--button-feed', { timeout: 10000 })
     }
 
+    getElementFoodContainItem() {
+        return cy.get(this.getElementFoodContainItemString(), { timeout: 10000 })
+    }
+
+    getElementFoodContainItemString() {
+        return '.food_content--item img'
+    }
+
+    
     //.action__accept
 }
 export const foodStorePO = new FoodStorePO()
