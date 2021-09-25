@@ -14,6 +14,7 @@ export class ListFood {
     dirty_shoes = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/80396782.png';
     dead_bomb = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/67885922.png';
     dead_bomb2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/19343018.png';
+    dead_bomb3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/96363084.png';
     snack_fries = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69306414.png';
     unicorn_shit = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69813211.png';
     unicorn_shit2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/17201476.png';
@@ -96,7 +97,7 @@ export class ListFood {
                 return -1
             case this.deadly_soup: case this.devil_heart: case this.devil_heart1:
                 return -2
-            case this.dead_bomb: case this.dead_bomb2:
+            case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3:
                 return -100
             default:
                 return 1
