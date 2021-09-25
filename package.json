@@ -15,5 +15,9 @@
   "devDependencies": {
     "cypress": "^8.4.1",
     "cypress-browser-extension-plugin": "^0.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "jsconfig.json": "^2.2.0"
   }
 }

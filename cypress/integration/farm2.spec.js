@@ -7,7 +7,7 @@ import { slackNotification } from "../support/Ultil/SlackNotification";
 
 describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
     it('Feed 1 pet to 100 stamina', () => {
-        cy.fixture('pkdUser_01').then((petkingdom) => {
+        cy.fixture('pkdUser_02').then((petkingdom) => {
             loginPA.visitPetKingDom();
             loginPA.loginPKDScholarMode(petkingdom.email, petkingdom.password);
             homePagePA.selectFoodStore();
@@ -21,9 +21,8 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
     })
 
 
-
     beforeEach(function () {
-        cy.fixture('pkdUser_01').then((petkingdom) => {
+        cy.fixture('pkdUser_02').then((petkingdom) => {
             slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
         })
     });
@@ -31,7 +30,7 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
 
 
     afterEach(function () {
-        cy.fixture('pkdUser_01').then((petkingdom) => {
+        cy.fixture('pkdUser_02').then((petkingdom) => {
             slackNotification.sendMsgToSlackAndTelegram('End game for email: ' + petkingdom.email)
         })
     });

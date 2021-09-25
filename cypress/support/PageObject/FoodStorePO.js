@@ -42,13 +42,13 @@ export class FoodStorePO {
         return cy.get('.food_shopping--button-home', { timeout: 10000 })
     }
 
-    // getElementBoughtFood() {
-    //     return cy.get(this.getElementBoughtFoodString(), { timeout: 10000 })
-    // }
+    getElementBoughtFood() {
+        return cy.get(this.getElementBoughtFoodString(), { timeout: 10000 })
+    }
 
-    // getElementBoughtFoodString() {
-    //     return '.food_content--name'
-    // }
+    getElementBoughtFoodString() {
+        return '.food_content--flex'
+    }
 
     getElementFoodNoneItem() {
         return cy.get(this.getElementFoodNoneItemString(), { timeout: 10000 })
