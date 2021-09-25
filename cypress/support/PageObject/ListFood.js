@@ -31,15 +31,27 @@ export class ListFood {
     mer_soybean = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/12393433.png';
     croissant = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/93403058.png';
 
+    // arrBadFood = [
+    //     "Extremely careful. Pet Will Die", //dead_bomb -100
+    //     "Devil's Heart will be harmfull for little soul", //devil_heart -2
+    //     "Hate the mell. Oops!! Your pet seems to hate the smell of Dirty paper on Venus", //toilet_paper:  -1
+    //     "Hate the mell. Oops!! Your pet seems to hate the smell of Mars Cheese", //mars_cheese: -1
+    //     "Snack fries taste is good, but not for your Pet's health", //snack_fres: -1
+    //     "Love it! Yummy, Ruby Stones is great bu can not eat", // Ruby_stone: -1
+    //     "Deadly Soup is dangerous for your Pet", //deadly_soup: -2
+    //     "Mersoybean has bad smell with your Pet", //mer_soybean: -1
+    // ]
+
     arrBadFood = [
-        "Extremely careful. Pet will die", //dead_bomb -100
+        "Extremely careful. Pet Will Die", //dead_bomb -100
         "Devil's Heart will be harmfull for little soul", //devil_heart -2
         "Hate the mell. Oops!! Your pet seems to hate the smell of Dirty paper on Venus", //toilet_paper:  -1
         "Hate the mell. Oops!! Your pet seems to hate the smell of Mars Cheese", //mars_cheese: -1
         "Snack fries taste is good, but not for your Pet's health", //snack_fres: -1
         "Love it! Yummy, Ruby Stones is great bu can not eat", // Ruby_stone: -1
         "Deadly Soup is dangerous for your Pet", //deadly_soup: -2
-        "Mersoybean has bad smell with your Pet", //mer_soybean: -1
+        "Mersoybean has bad smell with your Pet",
+        "Ask your pet is this food good?" //reb_herb: -1
     ]
 
     //positive >=0
@@ -93,8 +105,9 @@ export class ListFood {
 
 
     convertListFoodtoEnegryNumber(url, tooltip) {
-        if (!this.arrBadFood.contain(tooltip)) {
-            slackNotification.sendMessagetoNotification('Found Negative/bad food -> let fuck pet eat')
+        
+        if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) {
+            slackNotification.sendMessagetoNotification('Found Negative/bad food -> let fuck pet eat - tooltip: '+ tooltip)
             return -1
         }
         else {
@@ -116,6 +129,8 @@ export class ListFood {
                 case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3:
                     return -100
                 default:
+                    cy.log('Not Found in list, please double check '+ url)
+                    slackNotification.sendMessagetoNotification('Not Found in list, please double check - url: ' + url)
                     return 1
             }
         }

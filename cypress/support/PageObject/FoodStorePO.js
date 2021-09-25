@@ -84,7 +84,7 @@ export class FoodStorePO {
     }
 
     getElementFoodToolTipString() {
-        return '.food_content--item img'
+        return '.food_tooltip--title'
     }
     
     //.action__accept

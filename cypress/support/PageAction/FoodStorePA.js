@@ -56,21 +56,15 @@ export class FoodStorePA {
         foodStorePO.getElementBoughtFood().first().click()
     }
 
-
-    
-
-
-    // if(!arrBadFood.contain(tooltip.text())) {
-
-    // }
     logicFeedPet(primaryPet, fuckPet, email) {
         foodStorePO.getElementBoughtFood().first().trigger('mouseover', { timeout: 10000 }).wait(1500).then(() => {
-            foodStorePO.getElementFoodToolTip().then((tooltip) => {
+            foodStorePO.getElementFoodToolTip().first().then((tooltip) => {
+                cy.log('#####Tooltip is: ' + tooltip.text())
                 foodStorePO.getElementFoodContainItem().first().invoke('attr', 'src').then((url) => {
                     cy.log('######URL is: ' + url)
                     slackNotification.sendMessagetoNotification('URL is: ' + url)
                     cy.log('###Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()))
-                    slackNotification.sendMessagetoNotification('Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url), tooltip.text() + ' - Pet: ' + primaryPet + ' for email: ' + email)
+                    slackNotification.sendMessagetoNotification('Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()),  + ' - Pet: ' + primaryPet + ' for email: ' + email)
                     if (Number(listFood.convertListFoodtoEnegryNumber(url, tooltip.text())) >= 0) {
                         this.selectPet(primaryPet).then(() => {
                             cy.log('###Selected primary pet')
@@ -111,63 +105,6 @@ export class FoodStorePA {
             
         })
     }
-
-    // logicFeedPet(primaryPet, fuckPet) {
-    //     // foodStorePO.getElementFoodNoneItem().first().trigger('mouseover', { timeout: 10000 }).wait(1000).then(() => {
-    //     cy.wait(1000).get(foodStorePO.getElementFoodContainItemString()).first().invoke('attr', 'src').then((url) => {
-    //         cy.log('######URL is: ' + url)
-    //         // var eneNum = (listFood.convertListFoodtoEnegryNumber(recoveryElement))
-    //         // cy.wrap($enegryNum).then((eneNum) => {
-    //         cy.log('###Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url))
-    //         if (Number(listFood.convertListFoodtoEnegryNumber(url)) >= 0) {
-    //             this.selectPet(primaryPet).then(() => {
-    //                 cy.log('###Selected primary pet')
-    //                 foodStorePO.getElementPetStamina().then((stamina) => {
-    //                     cy.log('###PRIMARY PET STAMINA BEFORE FEEDING: [' + stamina.text() + ']')
-    //                     if (Number(stamina.text().split('/')[0]) < 100) {
-    //                         if ((Number(stamina.text().split('/')[0]) + Number(listFood.convertListFoodtoEnegryNumber(url))) <= 100) {
-    //                             foodStorePO.getElementPetStamina().should('be.visible').then(() => {
-    //                                 foodStorePO.getElementFoodContainItem().first().click().then(() => {
-    //                                     foodStorePO.getElementFeedButton().click().wait(1000).then(() => {
-    //                                         foodStorePO.getElementPetStamina().then((actual) => {
-    //                                             cy.log('###ACTUAL AFTER FEEDING: [' + actual.text() + ']')
-    //                                         })
-    //                                         cy.log('###PRIMARY PET STAMINA AFTER FEEDING: [' + (Number(stamina.text().split('/')[0]) + Number(listFood.convertListFoodtoEnegryNumber(url))) + '/100]')
-    //                                         cy.log('###Convert list number: ' + listFood.convertListFoodtoEnegryNumber(url))
-    //                                     })
-
-
-    //                                 })
-    //                             })
-    //                         } else {
-    //                             foodStorePO.getElementPetIDUnderFoodStore().then((totalPets) => {
-    //                                 for (let i = 0; i < totalPets.length; i++) {
-    //                                     if (!(i == (fuckPet - 1))) {
-    //                                         this.logicFeedPet(i, fuckPet)
-    //                                     }
-    //                                 }
-    //                             })
-    //                         }
-
-    //                     }
-    //                 })
-    //             })
-    //         } else if (Number(listFood.convertListFoodtoEnegryNumber(url)) < 0) {
-    //             this.selectPet(fuckPet).then(() => {
-    //                 cy.log('###Selected Fuck pet to eat bomb')
-    //                 foodStorePO.getElementPetStamina().should('be.visible', { timeout: 20000 }).then(() => {
-    //                     foodStorePO.getElementFoodContainItem().first().click().then(() => {
-    //                         foodStorePO.getElementFeedButton().click()
-    //                     })
-    //                 })
-    //             })
-    //         }
-    //         // })
-    //     })
-    //     // })
-
-
-    // }
 
 
     feedThePet(primaryPet, fuckPet, email, waitInMS = 3000) {
