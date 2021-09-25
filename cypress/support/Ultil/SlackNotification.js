@@ -4,7 +4,7 @@
 
 export class SlackNotification {
 
-    sendMessagetoNotification(strMsg) {
+    sendMessagetoSlack(strMsg) {
         cy.request({
             method: 'POST',
             url: 'https://slack.com/api/chat.postMessage',
@@ -29,7 +29,7 @@ export class SlackNotification {
     }
 
     sendMsgToSlackAndTelegram(str) {
-        this.sendMessagetoNotification(str)
+        this.sendMessagetoSlack(str)
         this.sendMessagetoTelegram(str)
     }
 

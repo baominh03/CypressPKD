@@ -60,26 +60,27 @@ export class FoodStorePA {
         foodStorePO.getElementBoughtFood().first().trigger('mouseover', { timeout: 10000 }).wait(1500).then(() => {
             foodStorePO.getElementFoodToolTip().first().then((tooltip) => {
                 cy.log('#####Tooltip is: ' + tooltip.text())
+                slackNotification.sendMessagetoSlack('Get tool tip: ' + tooltip.text())
                 foodStorePO.getElementFoodContainItem().first().invoke('attr', 'src').then((url) => {
                     cy.log('######URL is: ' + url)
-                    slackNotification.sendMessagetoNotification('URL is: ' + url)
+                    slackNotification.sendMessagetoSlack('URL is: ' + url)
                     cy.log('###Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()))
-                    slackNotification.sendMessagetoNotification('Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()),  + ' - Pet: ' + primaryPet + ' for email: ' + email)
+                    slackNotification.sendMessagetoSlack('Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()),  + ' - Pet: ' + primaryPet + ' for email: ' + email)
                     if (Number(listFood.convertListFoodtoEnegryNumber(url, tooltip.text())) >= 0) {
                         this.selectPet(primaryPet).then(() => {
                             cy.log('###Selected primary pet')
                             foodStorePO.getElementPetStamina().then((stamina) => {
-                                cy.log('###PRIMARY PET STAMINA BEFORE FEEDING: [' + stamina.text() + ']')
-                                slackNotification.sendMessagetoNotification('PRIMARY PET STAMINA BEFORE FEEDING: ' + stamina.text() + ' - Pet: ' + primaryPet + ' for email: ' + email)
+                                cy.log('###STAMINA BEFORE: [' + stamina.text() + ']')
+                                slackNotification.sendMessagetoSlack('STAMINA BEFORE: ' + stamina.text() + ' - Pet: ' + primaryPet + ' for email: ' + email)
                                 if (stamina.text().split('/')[0] < 100) {
                                     foodStorePO.getElementPetStamina().should('be.visible').then(() => {
                                         foodStorePO.getElementBoughtFood().first().click().then(() => {
                                             foodStorePO.getElementFeedButton().click().wait(2000).then(() => {
                                                 cy.log('###Clicked Feed pet ###')
                                                 foodStorePO.getElementPetStamina().then((actual) => {
-                                                    let strMsg = 'ACTUAL AFTER FEEDING: ' + actual.text() + ' - Pet: ' + primaryPet + ' for email: ' + email
+                                                    let strMsg = 'ACTUAL STAMINA: ' + actual.text() + ' - Pet: ' + primaryPet + ' for email: ' + email
                                                     cy.log(strMsg)
-                                                    slackNotification.sendMessagetoNotification(strMsg)
+                                                    slackNotification.sendMessagetoSlack(strMsg)
                                                 })
                                             })
                                             cy.log('###PRIMARY PET STAMINA AFTER FEEDING: [' + (Number(stamina.text().split('/')[0]) + Number(listFood.convertListFoodtoEnegryNumber(url, tooltip.text()))) + '/100]')
@@ -118,7 +119,13 @@ export class FoodStorePA {
                 })
             } else {
                 slackNotification.sendMsgToSlackAndTelegram('Delay 8 minutes - pet: ' + primaryPet + ' for email: ' + email)
-                cy.log('Out of Food, please wait go to buy some more')
+                this.selectPet(primaryPet).then(() => {
+                    foodStorePO.getElementPetStamina().then((actual) => {
+                        let strMsg = 'CURRENT STAMINA: ' + actual.text() + ' - Pet: ' + primaryPet + ' for email: ' + email
+                        cy.log(strMsg)
+                        slackNotification.sendMsgToSlackAndTelegram(strMsg)
+                    })
+                })
                 cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
                 cy.wait(480000)
             }
@@ -155,11 +162,8 @@ export class FoodStorePA {
                 }
             })
         }).then(() => {
-            // cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
-            // cy.wait(480000).then(() => {
             homePagePA.selectFoodStoreDirectly();
             this.feedThePetTo100(primaryPet, fuckPet, dificultLevel = dificultLevel, email)
-            // })
         })
     }
 
