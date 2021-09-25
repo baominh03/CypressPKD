@@ -59,7 +59,6 @@ export class FoodStorePO {
     }
 
 
-
     getElementRecoveryNumber() {
         return cy.get('.food_tooltip--content span', { timeout: 10000 })
     }
@@ -80,6 +79,13 @@ export class FoodStorePO {
         return '.food_content--item img'
     }
 
+    getElementFoodToolTip() {
+        return cy.get(this.getElementFoodToolTipString(), { timeout: 10000 })
+    }
+
+    getElementFoodToolTipString() {
+        return '.food_content--item img'
+    }
     
     //.action__accept
 }

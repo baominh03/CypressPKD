@@ -1,5 +1,7 @@
 /// <reference types="Cypress" />
 
+import { slackNotification } from "../Ultil/SlackNotification";
+
 export class ListFood {
 
     //negative <0
@@ -22,14 +24,23 @@ export class ListFood {
     cooked_beef = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/89463942.png';
     cooked_beaf2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/89463942.png';
     devil_heart = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/17965595.png';
-    devil_heart1= 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/23325825.png';
+    devil_heart1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/23325825.png';
     snack_hamburger = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/87605044.png';
     egg_shell = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/92093320.png';
     mars_cheese = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/71277890.png';
     mer_soybean = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/12393433.png';
     croissant = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/93403058.png';
-    
 
+    arrBadFood = [
+        "Extremely careful. Pet will die", //dead_bomb -100
+        "Devil's Heart will be harmfull for little soul", //devil_heart -2
+        "Hate the mell. Oops!! Your pet seems to hate the smell of Dirty paper on Venus", //toilet_paper:  -1
+        "Hate the mell. Oops!! Your pet seems to hate the smell of Mars Cheese", //mars_cheese: -1
+        "Snack fries taste is good, but not for your Pet's health", //snack_fres: -1
+        "Love it! Yummy, Ruby Stones is great bu can not eat", // Ruby_stone: -1
+        "Deadly Soup is dangerous for your Pet", //deadly_soup: -2
+        "Mersoybean has bad smell with your Pet", //mer_soybean: -1
+    ]
 
     //positive >=0
     whiskey_77 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/49815049.png';
@@ -81,26 +92,32 @@ export class ListFood {
     forgot_map = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/44422524.png';
 
 
-    convertListFoodtoEnegryNumber(url) {
-        switch (url) {
-            case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.hotdog: case this.wasabi_shit: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
-                return 1
-            case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
-                return 2
-            case this.unicorn_shit: case this.unicorn_shit2:
-                return 7
-            case this.smile_shit: case this.dragon_mango: case this.dragon_mango2:
-                return 10
-            case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
-                return 0
-            case this.cooked_beaf2: case this.red_herb: case this.red_herb2: case this.red_herb3: case this.red_herb4: case this.croissant: case this.mer_soybean: case this.ruby_stone: case this.mars_cheese: case this.egg_shell: case this.watermelon: case this.toilet_paper: case this.dirty_shoes: case this.snack_fries: case this.cooked_beef: case this.snack_hamburger: case this.toilet_paper2:
-                return -1
-            case this.deadly_soup: case this.devil_heart: case this.devil_heart1:
-                return -2
-            case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3:
-                return -100
-            default:
-                return 1
+    convertListFoodtoEnegryNumber(url, tooltip) {
+        if (!this.arrBadFood.contain(tooltip)) {
+            slackNotification.sendMessagetoNotification('Found Negative/bad food -> let fuck pet eat')
+            return -1
+        }
+        else {
+            switch (url) {
+                case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.hotdog: case this.wasabi_shit: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
+                    return 1
+                case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
+                    return 2
+                case this.unicorn_shit: case this.unicorn_shit2:
+                    return 7
+                case this.smile_shit: case this.dragon_mango: case this.dragon_mango2:
+                    return 10
+                case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
+                    return 0
+                case this.cooked_beaf2: case this.red_herb: case this.red_herb2: case this.red_herb3: case this.red_herb4: case this.croissant: case this.mer_soybean: case this.ruby_stone: case this.mars_cheese: case this.egg_shell: case this.watermelon: case this.toilet_paper: case this.dirty_shoes: case this.snack_fries: case this.cooked_beef: case this.snack_hamburger: case this.toilet_paper2:
+                    return -1
+                case this.deadly_soup: case this.devil_heart: case this.devil_heart1:
+                    return -2
+                case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3:
+                    return -100
+                default:
+                    return 1
+            }
         }
 
     }
