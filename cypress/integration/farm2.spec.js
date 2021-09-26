@@ -21,18 +21,18 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
     })
 
 
-    beforeEach(function () {
-        cy.fixture('pkdUser_02').then((petkingdom) => {
-            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
-        })
-    });
+    // beforeEach(function () {
+    //     cy.fixture('pkdUser_02').then((petkingdom) => {
+    //         slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
+    //     })
+    // });
 
 
 
-    afterEach(function () {
-        cy.fixture('pkdUser_02').then((petkingdom) => {
-            slackNotification.sendMsgToSlackAndTelegram('End game for email: ' + petkingdom.email)
-        })
-    });
+    // afterEach(function () {
+    //     cy.fixture('pkdUser_02').then((petkingdom) => {
+    //         slackNotification.sendMsgToSlackAndTelegram('End game for email: ' + petkingdom.email)
+    //     })
+    // });
 })
 
