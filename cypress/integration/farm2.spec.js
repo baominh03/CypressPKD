@@ -4,9 +4,25 @@ import { homePagePA } from "../support/PageAction/HomePagePA"
 import { foodStorePA } from "../support/PageAction/FoodStorePA"
 import { slackNotification } from "../support/Ultil/SlackNotification";
 
+beforeEach(function() {
+    cy.fixture('pkdUser_02').then((petkingdom) => {
+        Cypress.config('slack_channel', '#a_farmer_02_new')
+        slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
+        slackNotification.cypressInitialEnvironmentlog(petkingdom.email, petkingdom.primaryPet, petkingdom.fuckPet, Cypress.config('slack_channel'))
+    })
+  });
+
+afterEach(function () {
+    cy.fixture('pkdUser_02').then((petkingdom) => {
+        slackNotification.sendMessagetoSlackWithTag('End game for email: ' + petkingdom.email, 'U02F2TQJW1M')
+        slackNotification.sendMessagetoTelegram('End game for email: ' + petkingdom.email)
+    })
+});
 
 describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
     it('Feed 1 pet to 100 stamina', () => {
+        
+
         cy.fixture('pkdUser_02').then((petkingdom) => {
             loginPA.visitPetKingDom();
             loginPA.loginPKDScholarMode(petkingdom.email, petkingdom.password);
@@ -20,20 +36,6 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
 
     })
 
-
-    beforeEach(function () {
-        cy.fixture('pkdUser_02').then((petkingdom) => {
-            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
-        })
-    });
-
-
-
-    afterEach(function () {
-        cy.fixture('pkdUser_02').then((petkingdom) => {
-            slackNotification.sendMessagetoSlackWithTag('End game for email: ' + petkingdom.email, 'U02F2TQJW1M')
-            slackNotification.sendMessagetoTelegram('End game for email: ' + petkingdom.email)
-        })
-    });
+    
 })
 

@@ -4,5 +4,14 @@
   "viewportWidth": 1920,
   "defaultCommandTimeout": 20000,
   "pageLoadTimeout": 60000,
-  "projectId" : "v3p98k"
+  "projectId": "v3p98k",
+  "slack_channel": "#notification",
+  "staminaThreshold": 80,
+  "env": {
+    "slack_token": "xoxb-2533878935924-2533960483620-WpmkhPxk7PUWxk8B49QzU3Gw",
+    "slack_icon_emoji": ":cv-imange:",
+    "slack_user": "U02F2TQJW1M",
+    "telegram_token": "bot2016255777:AAGHTZg6soaNc2C_ovEvnf6P30J0cd4GHG8",
+    "telegram_group_id": "-550249062"
+  }
 }

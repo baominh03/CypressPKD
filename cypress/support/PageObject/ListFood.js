@@ -12,6 +12,7 @@ export class ListFood {
     red_herb5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/53754588.png';
     ruby_stone = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/75932754.png';
     watermelon = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/16488576.png';
+    watermelon2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69039648.png';
     toilet_paper = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/54731387.png';
     toilet_paper2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/11652115.png';
     dirty_shoes = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/80396782.png';
@@ -19,6 +20,7 @@ export class ListFood {
     dead_bomb2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/19343018.png';
     dead_bomb3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/96363084.png';
     dead_bomb4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/21949340.png';
+    dead_bomb5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/40882716.png';
     snack_fries = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69306414.png';
 
     deadly_soup = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/58509097.png';
@@ -46,6 +48,7 @@ export class ListFood {
 
     arrBadFood = [
         "Extremely careful. Pet Will Die", //dead_bomb -100
+        "Pet will die", //dead_bomb -100
         "Devil's Heart will be harmful for little soul", //devil_heart -2
         "Hate the mell. Oops!! Your pet seems to hate the smell of Dirty paper on Venus", //toilet_paper:  -1
         "Hate the mell. Oops!! Your pet seems to hate the smell of Mars Cheese", //mars_cheese: -1
@@ -147,6 +150,8 @@ export class ListFood {
     golden_node = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/35593505.png';
     golden_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/26536415.png';
     kimchi = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/16080133.png';
+    picnic_mars = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/29717142.png';
+    fire_soup = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/64524136.png';
 
     convertListFoodtoEnegryNumber(url, tooltip) {
         var pos = this.getPositiveFood(url)
@@ -182,26 +187,12 @@ export class ListFood {
         else {
             return pos
         }
-            }
-
-    getNegativeFood(url) {
-        switch (url) {
-            case this.red_herb5: case this.cooked_beaf2: case this.red_herb: case this.red_herb2: case this.red_herb3: case this.red_herb4: case this.croissant: case this.mer_soybean: case this.ruby_stone: case this.mars_cheese: case this.egg_shell: case this.watermelon: case this.toilet_paper: case this.dirty_shoes: case this.snack_fries: case this.cooked_beef: case this.snack_hamburger: case this.toilet_paper2:
-                return -1
-            case this.deadly_soup: case this.devil_heart: case this.devil_heart1:
-                return -2
-            case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3: case this.dead_bomb4:
-                return -100
-            default:
-                // cy.log('Negative Not Found in list, please double check ' + url)
-                // slackNotification.sendMessagetoSlack('Negative Not Found, please double check - url: ' + url)
-                return 'notfound'
-        }
     }
+
 
     getPositiveFood(url) {
         switch (url) {
-            case this.ginseng3: case this.kimchi: case this.golden_beer: case this.golden_node: case this.corona_beer: case this.spicy_squid: case this.hokkaido: case this.venus_fish: case this.sun_sashimi: case this.toxic_meat: case this.egg_noodles: case this.bread_flour: case this.another: case this.nude_shrimp: case this.nude_shrimp2: case this.sun_apple: case this.fire_pot: case this.fire_pot2: case this.venus_soup: case this.bubble_enegry: case this.dark_apple: case this.mars_meat: case this.sushi_shrimp: case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.metal_rice2: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.marshmallow2: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.shrimp2: case this.hotdog: case this.wasabi_shit: case this.wasabi_shit2: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.juicy2: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.mer_steak2: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
+            case this.fire_soup: case this.picnic_mars: case this.ginseng3: case this.kimchi: case this.golden_beer: case this.golden_node: case this.corona_beer: case this.spicy_squid: case this.hokkaido: case this.venus_fish: case this.sun_sashimi: case this.toxic_meat: case this.egg_noodles: case this.bread_flour: case this.another: case this.nude_shrimp: case this.nude_shrimp2: case this.sun_apple: case this.fire_pot: case this.fire_pot2: case this.venus_soup: case this.bubble_enegry: case this.dark_apple: case this.mars_meat: case this.sushi_shrimp: case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.metal_rice2: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.marshmallow2: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.shrimp2: case this.hotdog: case this.wasabi_shit: case this.wasabi_shit2: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.juicy2: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.mer_steak2: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
                 return 1
             case this.baobao4: case this.baobao3: case this.ocean_coak2: case this.spring_roll3: case this.spring_roll4: case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.ocean_coak3: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
                 return 2
@@ -212,11 +203,22 @@ export class ListFood {
             case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
                 return 0
             default:
-                // cy.log('Positive Not Found in list, please double check ' + url)
-                // slackNotification.sendMessagetoSlack('Positive Not Found, please double check - url: ' + url)
                 return 'notfound'
         }
     }
+    getNegativeFood(url) {
+        switch (url) {
+            case this.red_herb5: case this.cooked_beaf2: case this.red_herb: case this.red_herb2: case this.red_herb3: case this.red_herb4: case this.croissant: case this.mer_soybean: case this.ruby_stone: case this.mars_cheese: case this.egg_shell: case this.watermelon: case this.watermelon2: case this.toilet_paper: case this.dirty_shoes: case this.snack_fries: case this.cooked_beef: case this.snack_hamburger: case this.toilet_paper2:
+                return -1
+            case this.deadly_soup: case this.devil_heart: case this.devil_heart1:
+                return -2
+            case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3: case this.dead_bomb4: case this.dead_bomb5:
+                return -100
+            default:
+                return 'notfound'
+        }
+    }
+
 
 }
 

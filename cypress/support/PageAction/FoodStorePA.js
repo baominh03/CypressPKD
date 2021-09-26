@@ -57,16 +57,18 @@ export class FoodStorePA {
     }
 
     logicFeedPet(primaryPet, fuckPet, email) {
+        let foodValue
         foodStorePO.getElementBoughtFood().first().trigger('mouseover', { timeout: 10000 }).wait(1500).then(() => {
             foodStorePO.getElementFoodToolTip().first().then((tooltip) => {
                 cy.log('#####Tooltip is: ' + tooltip.text())
                 slackNotification.sendMessagetoSlack('Get tool tip: ' + tooltip.text())
                 foodStorePO.getElementFoodContainItem().first().invoke('attr', 'src').then((url) => {
+                    foodValue = listFood.convertListFoodtoEnegryNumber(url, tooltip.text())
                     cy.log('######URL is: ' + url)
                     slackNotification.sendMessagetoSlack('URL is: ' + url)
-                    cy.log('###Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()))
-                    slackNotification.sendMessagetoSlack('Food Recovery Number: ' + listFood.convertListFoodtoEnegryNumber(url, tooltip.text()),  + ' - Pet: ' + primaryPet + ' for email: ' + email)
-                    if (Number(listFood.convertListFoodtoEnegryNumber(url, tooltip.text())) >= 0) {
+                    cy.log('###Food Recovery Number: ' + foodValue)
+                    slackNotification.sendMessagetoSlack('Food Recovery Number: ' + foodValue + ' - Pet: ' + primaryPet + ' for email: ' + email)
+                    if (Number(foodValue) >= 0) {
                         this.selectPet(primaryPet).then(() => {
                             cy.log('###Selected primary pet')
                             foodStorePO.getElementPetStamina().then((stamina) => {
@@ -83,7 +85,7 @@ export class FoodStorePA {
                                                     slackNotification.sendMessagetoSlack(strMsg)
                                                 })
                                             })
-                                            cy.log('###PRIMARY PET STAMINA AFTER FEEDING: [' + (Number(stamina.text().split('/')[0]) + Number(listFood.convertListFoodtoEnegryNumber(url, tooltip.text()))) + '/100]')
+                                            cy.log('###PRIMARY PET STAMINA AFTER FEEDING: [' + (Number(stamina.text().split('/')[0]) + Number(foodValue)) + '/100]')
                                         })
                                     })
                                 }
@@ -92,9 +94,11 @@ export class FoodStorePA {
                     } else {
                         this.selectPet(fuckPet).then(() => {
                             cy.log('###Selected Fuck pet to eat boom')
-                            foodStorePO.getElementPetStamina().should('be.visible', { timeout: 20000 }).then(() => {
+                            slackNotification.sendMessagetoSlack('Selected Fuck pet to eat boom - pet: '+ fuckPet + ' for email: ' + email)
+                            foodStorePO.getElementPetStamina().then((stamina) => {
                                 foodStorePO.getElementBoughtFood().first().click().then(() => {
                                     foodStorePO.getElementFeedButton().click()
+                                    slackNotification.sendMessagetoSlack('Pet:' + fuckPet + ' with stamina: '+ stamina.text()) + ' eat negative food'
                                     cy.log('###Clicked Feed for Fuck pet ###')
                                 })
                             })
@@ -137,7 +141,7 @@ export class FoodStorePA {
         this.selectPet(primaryPet).then(() => {
             foodStorePO.getElementPetStamina().then((stamina) => {
                 cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
-                if (stamina.text().split('/')[0] < 100) {
+                if (stamina.text().split('/')[0] < Cypress.config('staminaThreshold')) {
                     cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
                     this.clickToBuyFood()
                     this.buyFoodItemFromShop()
