@@ -32,7 +32,8 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
 
     afterEach(function () {
         cy.fixture('pkdUser_01').then((petkingdom) => {
-            slackNotification.sendMsgToSlackAndTelegram('End game for email: ' + petkingdom.email)
+            slackNotification.sendMessagetoSlackWithTag('End game for email: ' + petkingdom.email, 'U02F2TQJW1M')
+            slackNotification.sendMessagetoTelegram('End game for email: ' + petkingdom.email)
         })
     });
 })
