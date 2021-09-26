@@ -7,7 +7,7 @@ import { slackNotification } from "../support/Ultil/SlackNotification";
 beforeEach(function() {
     cy.fixture('pkdUser_02').then((petkingdom) => {
         Cypress.config('slack_channel', '#a_farmer_02_new')
-        slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
+        // slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
         slackNotification.cypressInitialEnvironmentlog(petkingdom.email, petkingdom.primaryPet, petkingdom.fuckPet, Cypress.config('slack_channel'))
     })
   });
@@ -26,6 +26,7 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
         cy.fixture('pkdUser_02').then((petkingdom) => {
             loginPA.visitPetKingDom();
             loginPA.loginPKDScholarMode(petkingdom.email, petkingdom.password);
+            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
             homePagePA.selectFoodStore();
             foodStorePA.feedThePetTo100(petkingdom.primaryPet, petkingdom.fuckPet, petkingdom.dificulty, petkingdom.email)
         })
