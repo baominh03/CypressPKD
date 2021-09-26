@@ -5,7 +5,7 @@ https://bsc-dataseed.binance.org/
 BNB
 https://bscscan.com
 
-
+U02F2TQJW1M
 npx cypress run --spec 'cypress/integration/farm.spec.js' --headed --browser chrome --no-exit
 npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed --browser chrome --no-exit
 npx cypress run --spec 'cypress/integration/farm2.spec.js' --headed --browser chrome --no-exit
