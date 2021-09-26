@@ -145,92 +145,41 @@ export class ListFood {
     corona_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/35789155.png';
     golden_node = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/35593505.png';
     golden_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/26536415.png';
-
-
-
-
-
-    // convertListFoodtoEnegryNumber(url, tooltip) {
-    //     this.detectNegativePoistiveFood()
-    //     if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) {
-    //         slackNotification.sendMessagetoSlack('Found Negative/bad food -> let fuck pet eat - tooltip: ' + tooltip)
-    //         return this.getNegativeFood()
-    //     }
-    //     else {
-    //         if (this.getPositiveFood() == 'notfound') {
-    //             return this.getNegativeFood()
-    //         }
-    //         else {
-    //             return this.getPositiveFood()
-    //         }
-    //     }
-    // }
+    kimchi = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/16080133.png';
 
     convertListFoodtoEnegryNumber(url, tooltip) {
         var pos = this.getPositiveFood(url)
         var nev = this.getNegativeFood(url)
-        
-                
-            if (pos == 'notfound') {  //Cannot found in Positive list
-                if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
-                    slackNotification.sendMessagetoSlack('Found Negative/bad food tooltip: ' + tooltip)
-                    if (nev != 'notfound') {
-                        slackNotification.sendMessagetoSlack('Negative found and exist in array as well: ' + url)
-                        return nev
-                    }
-                    else {
-                        slackNotification.sendMessagetoSlack('Negative NOT found exist but in array: -set default [-1] -url' + url)
-                        return -1 //check negative list - default -1
-                    }
+
+
+        if (pos == 'notfound') {  //Cannot found in Positive list
+            if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
+                slackNotification.sendMessagetoSlack('Found Negative/bad food tooltip: ' + tooltip)
+                if (nev != 'notfound') {
+                    slackNotification.sendMessagetoSlack('Negative found and exist in array as well: ' + url)
+                    return nev
+                }
+                else if (nev == 'notfound') {
+                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url, 'U02F2TQJW1M') // in case not contain in array - return -1
+                    cy.contains('End run', { timeout: 100 })
                 } else {
-                    if (nev == 'notfound') {
-                        slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url, 'U02F2TQJW1M') // in case not contain in array - return -1
-                        cy.contains('End run', { timeout: 100 })
-                    } else {
-                        slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url)
-                        return nev
-                    }
-
-
+                    slackNotification.sendMessagetoSlack('Negative NOT found exist but in array: -set default [-1] -url' + url)
+                    return -1 //check negative list - default -1
+                }
+            } else {
+                if (nev == 'notfound') {
+                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url, 'U02F2TQJW1M') // in case not contain in array - return -1
+                    cy.contains('End run', { timeout: 100 })
+                } else {
+                    slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url)
+                    return nev
                 }
             }
-            else {
-                return pos
+        }
+        else {
+            return pos
+        }
             }
-        // })
-        ///
-        // cy.wait(100).then(() => {
-        //     pos = this.getNegativeFood(url)
-        //     nev = this.getPositiveFood(url)
-        // }).then(() => {
-        //     if (pos == 'notfound' && nev == 'notfound') {
-        //         slackNotification.sendMessagetoSlack('STOP run Undefined food - url: ' + url) // in case not contain in array - return -1
-        //     } else {
-        //         if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
-        //             slackNotification.sendMessagetoSlack('Found Negative/bad food -> let fuck pet eat - tooltip: ' + tooltip)
-        //             return nev //check negative list - default -1
-        //         } else if(pos != 'notfound') {
-        //             return pos
-        //         }
-        //         else {
-        //             slackNotification.sendMessagetoSlack('Undefined food - url: ' + url) // in case not contain in array - return -1
-        //             return -1
-        //         }
-        //     }
-
-        // })
-
-    }
-
-
-    // detectNegativePoistiveFood(url) {
-    //     if (this.getPositiveFood() == 'notfound') {
-    //         return this.getNegativeFood(url)
-    //     }
-    //     else {
-    //         return this.getPositiveFood(url)
-    //     }
-    // }
 
     getNegativeFood(url) {
         switch (url) {
@@ -249,7 +198,7 @@ export class ListFood {
 
     getPositiveFood(url) {
         switch (url) {
-            case this.golden_beer: case this.golden_node: case this.corona_beer: case this.spicy_squid: case this.hokkaido: case this.venus_fish: case this.sun_sashimi: case this.toxic_meat: case this.egg_noodles: case this.bread_flour: case this.another: case this.nude_shrimp: case this.nude_shrimp2: case this.sun_apple: case this.fire_pot: case this.fire_pot2: case this.venus_soup: case this.bubble_enegry: case this.dark_apple: case this.mars_meat: case this.sushi_shrimp: case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.metal_rice2: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.marshmallow2: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.shrimp2: case this.hotdog: case this.wasabi_shit: case this.wasabi_shit2: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.juicy2: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.mer_steak2: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
+            case this.kimchi: case this.golden_beer: case this.golden_node: case this.corona_beer: case this.spicy_squid: case this.hokkaido: case this.venus_fish: case this.sun_sashimi: case this.toxic_meat: case this.egg_noodles: case this.bread_flour: case this.another: case this.nude_shrimp: case this.nude_shrimp2: case this.sun_apple: case this.fire_pot: case this.fire_pot2: case this.venus_soup: case this.bubble_enegry: case this.dark_apple: case this.mars_meat: case this.sushi_shrimp: case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.metal_rice2: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.marshmallow2: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.shrimp2: case this.hotdog: case this.wasabi_shit: case this.wasabi_shit2: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.juicy2: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.mer_steak2: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
                 return 1
             case this.baobao4: case this.baobao3: case this.ocean_coak2: case this.spring_roll3: case this.spring_roll4: case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.ocean_coak3: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
                 return 2
