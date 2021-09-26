@@ -1,6 +1,6 @@
-# CypressPKD
+### CypressPKD
 
-## **Prerequisites**
+### **Prerequisites**
 
 Before you continue, ensure you meet the following requirements:
 
@@ -11,7 +11,7 @@ Before you continue, ensure you meet the following requirements:
 * Install cypress at current working directory: ```npm install cypress --save-dev``` or [Cypress installation](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
 
 
-## **Execution**
+### **Execution**
 1. Config your account at ```./cypress/fixture/xxxxx.json```
 ```
 {
@@ -41,6 +41,74 @@ npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed --browser ch
 4. Back to cypress chrome tab -> re-run the tools
 ![image](https://user-images.githubusercontent.com/39981269/134518322-0cab1a7b-6dd5-4ef8-a529-0ae6ae67e4a3.png)
 ![image](https://user-images.githubusercontent.com/39981269/134518958-4839247b-3fdd-4f75-91a5-85bf661333ad.png)
+
+
+### **Slack/ telegram integration**
+
+## 1. **Slack API**: 
+
+# Setup:
+* Register Slack account: https://slack.com/get-started
+* Create slack apps, get slack **slack_token**: [Working with the Slack API in Node.js](https://thecodebarbarian.com/working-with-the-slack-api-in-node-js.html)
+* Get **user_id (or member_id)**: [How to find my Member ID](https://moshfeu.medium.com/how-to-find-my-member-id-in-slack-workspace-d4bba942e38c)
+* From your slack desktop app, create channel then capture channel id ( e.g: #notification)
+
+# Config: 
+Config slack api at .\cypress.json
+```
+{
+  "ignoreTestFiles": "**/examples/*",
+  "viewportHeight": 1080,
+  "viewportWidth": 1920,
+  "defaultCommandTimeout": 20000,
+  "pageLoadTimeout": 60000,
+  "projectId": "v3p98k",
+  "slack_channel": "#notification",
+  "staminaThreshold": 80,
+  "env": {
+    "slack_token": "slack token",
+    "slack_icon_emoji": "avarta",
+    "slack_user": "member id",
+    "telegram_token": "your telegram token",
+    "telegram_group_id": "your group id"
+  }
+}
+```
+# More custom for Slack bot:
+https://api.slack.com/methods/
+
+![image](https://user-images.githubusercontent.com/39981269/134810157-c9c7a37a-d140-4634-96c2-6ccba951d7f9.png)
+
+
+## 2. **Telegram API**: 
+
+# Setup:
+Create a bot and save your telegram token: https://sendpulse.com/knowledge-base/chatbot/create-telegram-chatbot
+Get group id: https://www.wikihow.com/Know-Chat-ID-on-Telegram-on-Android
+
+# Config: 
+Config slack api at .\cypress.json
+```
+{
+  "ignoreTestFiles": "**/examples/*",
+  "viewportHeight": 1080,
+  "viewportWidth": 1920,
+  "defaultCommandTimeout": 20000,
+  "pageLoadTimeout": 60000,
+  "projectId": "v3p98k",
+  "slack_channel": "#notification",
+  "staminaThreshold": 80,
+  "env": {
+    "slack_token": "slack token",
+    "slack_icon_emoji": "avarta",
+    "slack_user": "member id",
+    "telegram_token": "your telegram token",
+    "telegram_group_id": "your group id"
+  }
+}
+```
+![image](https://user-images.githubusercontent.com/39981269/134810326-a59bf79c-8f56-40cc-bd0b-05e82097922b.png)
+
 
 
 More function will be update later!!!!!!
