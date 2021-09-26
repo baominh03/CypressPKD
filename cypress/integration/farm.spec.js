@@ -33,6 +33,7 @@ describe('First suite: Feed one 1 pet to 100 stamina', () => {
     afterEach(function() {
         cy.fixture('pkdUser').then((petkingdom) => {
             slackNotification.sendMessagetoSlackWithTag('End game for email: ' + petkingdom.email, 'U02F2TQJW1M')
+            slackNotification.sendMessagetoTelegram('End game for email: ' + petkingdom.email)
         })
       });
 })
