@@ -50,13 +50,15 @@ export class ListFood {
         "Hate the mell. Oops!! Your pet seems to hate the smell of Dirty paper on Venus", //toilet_paper:  -1
         "Hate the mell. Oops!! Your pet seems to hate the smell of Mars Cheese", //mars_cheese: -1
         "Snack fries taste is good, but not for your Pet's health", //snack_fres: -1
-        "Love it! Yummy, Ruby Stones is great bu can not eat", // Ruby_stone: -1
+        "Love it! Yummy, Ruby Stones is great but can not eat", // Ruby_stone: -1
         "Deadly Soup is dangerous for your Pet", //deadly_soup: -2
         "Mersoybean has bad smell with your Pet",
         "Ask your pet is this food good?", //reb_herb: -1
         "Cooked or Uncooked?",//beaf -1
         "Hate the mell. Oops!! Your pet seems to hate the smell of Watermelon", //wartermelon -1 
         "Hate the mell. Oops!! Your pet seems to hate the smell of Dirty Shoes", //dirty shoes
+        "Egg Shell will harm your Pet", //egg shell -2
+        "Croissant is too hard to eat" //croissant -1
     ]
 
     //positive >=0
@@ -143,7 +145,7 @@ export class ListFood {
     corona_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/35789155.png';
     golden_node = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/35593505.png';
     golden_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/26536415.png';
-    
+
 
 
 
@@ -165,18 +167,58 @@ export class ListFood {
     // }
 
     convertListFoodtoEnegryNumber(url, tooltip) {
-        if (this.getPositiveFood(url) == 'notfound') {  //Cannot found in Positive list
-            if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
-                slackNotification.sendMessagetoSlack('Found Negative/bad food -> let fuck pet eat - tooltip: ' + tooltip)
-                return this.getNegativeFood(url) //check negative list - default -1
-            } else {
-                slackNotification.sendMessagetoSlack('Undefined food - url: ' + url) // in case not contain in array - return -1
-                return -1
+        var pos = this.getPositiveFood(url)
+        var nev = this.getNegativeFood(url)
+        
+                
+            if (pos == 'notfound') {  //Cannot found in Positive list
+                if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
+                    slackNotification.sendMessagetoSlack('Found Negative/bad food tooltip: ' + tooltip)
+                    if (nev != 'notfound') {
+                        slackNotification.sendMessagetoSlack('Negative found and exist in array as well: ' + url)
+                        return nev
+                    }
+                    else {
+                        slackNotification.sendMessagetoSlack('Negative NOT found exist but in array: -set default [-1] -url' + url)
+                        return -1 //check negative list - default -1
+                    }
+                } else {
+                    if (nev == 'notfound') {
+                        slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url, 'U02F2TQJW1M') // in case not contain in array - return -1
+                        cy.contains('End run', { timeout: 100 })
+                    } else {
+                        slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url)
+                        return nev
+                    }
+
+
+                }
             }
-        }
-        else {
-            return this.getPositiveFood(url)
-        }
+            else {
+                return pos
+            }
+        // })
+        ///
+        // cy.wait(100).then(() => {
+        //     pos = this.getNegativeFood(url)
+        //     nev = this.getPositiveFood(url)
+        // }).then(() => {
+        //     if (pos == 'notfound' && nev == 'notfound') {
+        //         slackNotification.sendMessagetoSlack('STOP run Undefined food - url: ' + url) // in case not contain in array - return -1
+        //     } else {
+        //         if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
+        //             slackNotification.sendMessagetoSlack('Found Negative/bad food -> let fuck pet eat - tooltip: ' + tooltip)
+        //             return nev //check negative list - default -1
+        //         } else if(pos != 'notfound') {
+        //             return pos
+        //         }
+        //         else {
+        //             slackNotification.sendMessagetoSlack('Undefined food - url: ' + url) // in case not contain in array - return -1
+        //             return -1
+        //         }
+        //     }
+
+        // })
 
     }
 
@@ -199,9 +241,9 @@ export class ListFood {
             case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3: case this.dead_bomb4:
                 return -100
             default:
-                cy.log('Negative Not Found in list, please double check ' + url)
-                slackNotification.sendMessagetoSlack('Negative Not Found, please double check - url: ' + url)
-                return -1
+                // cy.log('Negative Not Found in list, please double check ' + url)
+                // slackNotification.sendMessagetoSlack('Negative Not Found, please double check - url: ' + url)
+                return 'notfound'
         }
     }
 
@@ -218,8 +260,8 @@ export class ListFood {
             case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
                 return 0
             default:
-                cy.log('Positive Not Found in list, please double check ' + url)
-                slackNotification.sendMessagetoSlack('Positive Not Found, please double check - url: ' + url)
+                // cy.log('Positive Not Found in list, please double check ' + url)
+                // slackNotification.sendMessagetoSlack('Positive Not Found, please double check - url: ' + url)
                 return 'notfound'
         }
     }

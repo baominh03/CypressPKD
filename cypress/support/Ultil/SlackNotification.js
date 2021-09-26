@@ -33,6 +33,19 @@ export class SlackNotification {
         this.sendMessagetoTelegram(str)
     }
 
-
+    sendMessagetoSlackWithTag(strMsg, userId) {
+        cy.request({
+            method: 'POST',
+            url: 'https://slack.com/api/chat.postMessage',
+            headers: { authorization: 'Bearer ' + 'xoxb-2533878935924-2533960483620-WpmkhPxk7PUWxk8B49QzU3Gw' },
+            body: {
+                channel: '#notification',
+                username: 'Bao Le Auto [' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + ']',
+                icon_emoji: ':cv-imange:',
+                user: userId,
+                text: '<@' + userId + '|cal> ' + strMsg
+            },
+        })
+    }
 }
 export const slackNotification = new SlackNotification()
