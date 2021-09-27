@@ -19,7 +19,7 @@ beforeEach(function() {
 
 afterEach(function() {
     cy.fixture('pkdUser').then((petkingdom) => {
-        slackNotification.sendMessagetoSlackWithTag('End game for email: ' + petkingdom.email, 'U02F2TQJW1M')
+        slackNotification.sendMessagetoSlackWithTag('End game for email: ' + petkingdom.email)
         slackNotification.sendMessagetoTelegram('End game for email: ' + petkingdom.email)
     })
   });

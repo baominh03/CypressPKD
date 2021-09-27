@@ -4,14 +4,14 @@
   "viewportWidth": 1920,
   "defaultCommandTimeout": 20000,
   "pageLoadTimeout": 120000,
-  "projectId": "v3p98k",
   "slack_channel": "#notification",
   "staminaThreshold": 80,
+  "notification": true,
   "env": {
-    "slack_token": "xoxb-2533878935924-2533960483620-WpmkhPxk7PUWxk8B49QzU3Gw",
+    "slack_token": "eG94Yi0yNTMzODc4OTM1OTI0LTI1MzM5NjA0ODM2MjAtZVNOaVZxYnBzNmpTZ0lFcUNmU2VGYmY3",
     "slack_icon_emoji": ":cv-imange:",
-    "slack_user": "U02F2TQJW1M",
-    "telegram_token": "bot2016255777:AAGHTZg6soaNc2C_ovEvnf6P30J0cd4GHG8",
-    "telegram_group_id": "-550249062"
+    "slack_user": "VTAyRjJUUUpXMU0=",
+    "telegram_token": "Ym90MjAxNjI1NTc3NzpBQUdIVFpnNnNvYU5jMkNfb3ZFdm5mNlAzMEowY2Q0R0hHOA==",
+    "telegram_group_id": "LTU1MDI0OTA2Mg=="
   }
 }

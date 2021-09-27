@@ -3,5 +3,10 @@
   "password": "Baobao@2709",
   "primaryPet": 1,
   "fuckPet": 3,
-  "dificulty": "easy"
+  "dificulty": "easy",
+  "petLimit": {
+    "pet1": 0,
+    "pet2": 1,
+    "pet3": 1
+  }
 }
