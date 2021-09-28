@@ -21,19 +21,21 @@ export class SlackNotification {
     sendMessagetoSlack(str) {
 
         if (Cypress.config('notification') == true) {
-
-            cy.request({
-                method: 'POST',
-                url: 'https://slack.com/api/chat.postMessage',
-                headers: { authorization: 'Bearer ' + this.base64DecodeUnicode(Cypress.env('slack_token')) },
-                body: {
-                    channel: Cypress.config('slack_channel'),
-                    text: str,
-                    username: 'Bao Le Auto [' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + ']',
-                    icon_emoji: Cypress.env('slack_icon_emoji')
-                },
-            })
-
+            try {
+                cy.request({
+                    method: 'POST',
+                    url: 'https://slack.com/api/chat.postMessage',
+                    headers: { authorization: 'Bearer ' + this.base64DecodeUnicode(Cypress.env('slack_token')) },
+                    body: {
+                        channel: Cypress.config('slack_channel'),
+                        text: str,
+                        username: 'Bao Le Auto [' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + ']',
+                        icon_emoji: Cypress.env('slack_icon_emoji')
+                    },
+                })
+            } catch (Err) {
+                cy.log('Slack error')
+            }
         }
 
     }
@@ -41,22 +43,22 @@ export class SlackNotification {
     sendMessagetoSlackWithTag(strMsg) {
 
         if (Cypress.config('notification') == true) {
-
-            cy.request({
-                method: 'POST',
-                url: 'https://slack.com/api/chat.postMessage',
-                headers: { authorization: 'Bearer ' + this.base64DecodeUnicode(Cypress.env('slack_token')) },
-                body: {
-                    channel: Cypress.config('slack_channel'),
-                    username: 'Bao Le Auto [' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + ']',
-                    icon_emoji: Cypress.env('slack_icon_emoji'),
-                    user: this.base64DecodeUnicode(Cypress.env('slack_user')),
-                    text: '<@' + this.base64DecodeUnicode(Cypress.env('slack_user')) + '|cal> ' + strMsg
-                },
-            })
-
-        } else {
-            cy.log('No Slack')
+            try {
+                cy.request({
+                    method: 'POST',
+                    url: 'https://slack.com/api/chat.postMessage',
+                    headers: { authorization: 'Bearer ' + this.base64DecodeUnicode(Cypress.env('slack_token')) },
+                    body: {
+                        channel: Cypress.config('slack_channel'),
+                        username: 'Bao Le Auto [' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + ']',
+                        icon_emoji: Cypress.env('slack_icon_emoji'),
+                        user: this.base64DecodeUnicode(Cypress.env('slack_user')),
+                        text: '<@' + this.base64DecodeUnicode(Cypress.env('slack_user')) + '|cal> ' + strMsg
+                    },
+                })
+            } catch (Err) {
+                cy.log('Slack error')
+            }
         }
     }
 

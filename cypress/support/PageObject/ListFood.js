@@ -21,6 +21,7 @@ export class ListFood {
     dead_bomb3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/96363084.png';
     dead_bomb4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/21949340.png';
     dead_bomb5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/40882716.png';
+    dead_bomb6 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/75907095.png';
     snack_fries = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69306414.png';
 
     deadly_soup = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/58509097.png';
@@ -77,6 +78,10 @@ export class ListFood {
     baobao2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/84131716.png';
     baobao3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/68727234.png';
     baobao4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/41646158.png';
+    baobao5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/30669394.png';
+    baobao6 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/96113776.png';
+    baobao7 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/53007104.png';
+    baobao8 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69809242.png';
     ginseng = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/95350236.png';
     ginseng2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/39789542.png';
     ginseng3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/54940591.png';
@@ -85,6 +90,9 @@ export class ListFood {
     pizza = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/80106606.png';
     smile_shit = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/92305097.png';
     smile_shit2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/42626223.png';
+    smile_shit3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/79780847.png';
+    smile_shit4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/18529399.png';
+    smile_shit5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/20266431.png';
     e_toilet = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/32367935.png';
     e_toilet2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/93400973.png';
     mer_steak = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/84474502.png';
@@ -94,6 +102,8 @@ export class ListFood {
     dragon_mango = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/67812425.png';
     dragon_mango2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/78333158.png';
     dragon_mango3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/28242398.png';
+    dragon_mango4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/31344057.png';
+    dragon_mango5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/21034734.png';
     tomyum = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/58242256.png';
     tomyum2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/92752285.png'
     tsingtao_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/68415666.png';
@@ -129,6 +139,8 @@ export class ListFood {
     forgot_map = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/44422524.png';
     unicorn_shit = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69813211.png';
     unicorn_shit2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/17201476.png';
+    unicorn_shit3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/20570858.png';
+    unicorn_shit4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/10907524.png';
     sushi_shrimp = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/74382060.png';
     mars_meat = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/48081396.png';
     dark_apple = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/50926219.png';
@@ -152,34 +164,38 @@ export class ListFood {
     kimchi = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/16080133.png';
     picnic_mars = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/29717142.png';
     fire_soup = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/64524136.png';
+    hell_bomb = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/36501580.png';
+    hell_bomb1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/73862494.png';
+    hell_bomb2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/85091323.png';
+    hell_bomb3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/55989230.png';
+    eaten_banana = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/66529377.png';
 
     convertListFoodtoEnegryNumber(url, tooltip) {
         var pos = this.getPositiveFood(url)
         var nev = this.getNegativeFood(url)
 
-
         if (pos == 'notfound') {  //Cannot found in Positive list
             if (this.arrBadFood.map(name => name.toLowerCase()).includes(tooltip.toLowerCase())) { // check arr negative list - if contain in array
-                slackNotification.sendMessagetoSlack('Found Negative/bad food tooltip: ' + tooltip)
+                // slackNotification.sendMessagetoSlack('Found Negative/bad food tooltip: ' + tooltip)
                 if (nev != 'notfound') {
-                    slackNotification.sendMessagetoSlack('Negative found and exist in array as well: ' + url)
+                    // slackNotification.sendMessagetoSlack('Negative found and exist in array as well: ' + url)
                     return nev
                 }
                 else if (nev == 'notfound') {
                     cy.log('STOP RUN: Undefined food - url: ' + url)
-                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url, 'U02F2TQJW1M') // in case not contain in array - return -1
+                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url) // in case not contain in array - return -1
                     cy.contains('End run', { timeout: 100 })
                 } else {
-                    slackNotification.sendMessagetoSlack('Negative NOT found exist but in array: -set default [-1] -url' + url)
+                    // slackNotification.sendMessagetoSlack('Negative NOT found exist but in array: -set default [-1] -url' + url)
                     return -1 //check negative list - default -1
                 }
             } else {
                 if (nev == 'notfound') {
                     cy.log('STOP RUN: Undefined food - url: ' + url)
-                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url, 'U02F2TQJW1M') // in case not contain in array - return -1
+                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url) 
                     cy.contains('End run', { timeout: 100 })
                 } else {
-                    slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url)
+                    slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url) // in case not contain in array - return -1
                     return nev
                 }
             }
@@ -192,16 +208,18 @@ export class ListFood {
 
     getPositiveFood(url) {
         switch (url) {
-            case this.fire_soup: case this.picnic_mars: case this.ginseng3: case this.kimchi: case this.golden_beer: case this.golden_node: case this.corona_beer: case this.spicy_squid: case this.hokkaido: case this.venus_fish: case this.sun_sashimi: case this.toxic_meat: case this.egg_noodles: case this.bread_flour: case this.another: case this.nude_shrimp: case this.nude_shrimp2: case this.sun_apple: case this.fire_pot: case this.fire_pot2: case this.venus_soup: case this.bubble_enegry: case this.dark_apple: case this.mars_meat: case this.sushi_shrimp: case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.metal_rice2: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.marshmallow2: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.shrimp2: case this.hotdog: case this.wasabi_shit: case this.wasabi_shit2: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.juicy2: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.mer_steak2: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
+            case this.eaten_banana: case this.fire_soup: case this.picnic_mars: case this.ginseng3: case this.kimchi: case this.golden_beer: case this.golden_node: case this.corona_beer: case this.spicy_squid: case this.hokkaido: case this.venus_fish: case this.sun_sashimi: case this.toxic_meat: case this.egg_noodles: case this.bread_flour: case this.another: case this.nude_shrimp: case this.nude_shrimp2: case this.sun_apple: case this.fire_pot: case this.fire_pot2: case this.venus_soup: case this.bubble_enegry: case this.dark_apple: case this.mars_meat: case this.sushi_shrimp: case this.gold_piece: case this.forgot_map: case this.ginseng2: case this.mars_squid: case this.mercury_ramen: case this.metal_rice: case this.metal_rice2: case this.venus_ramen: case this.unknow_dog: case this.mars_soup: case this.marshmallow: case this.marshmallow2: case this.lemak_mercury: case this.spaghetti: case this.shrimp: case this.shrimp2: case this.hotdog: case this.wasabi_shit: case this.wasabi_shit2: case this.twin_banana: case this.sushi: case this.fastfood: case this.mars_crab: case this.ginseng: case this.normal_rice: case this.juicy: case this.juicy2: case this.scrazy_sushi: case this.pizza: case this.mer_steak: case this.mer_steak2: case this.venus_head: case this.tomyum: case this.grape_earth: case this.tomyum2:
                 return 1
-            case this.baobao4: case this.baobao3: case this.ocean_coak2: case this.spring_roll3: case this.spring_roll4: case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.ocean_coak3: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
+            case this.baobao4: case this.baobao3: case this.baobao8: case this.baobao5: case this.baobao6: case this.baobao7: case this.ocean_coak2: case this.spring_roll3: case this.spring_roll4: case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.ocean_coak3: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
                 return 2
-            case this.unicorn_shit: case this.unicorn_shit2:
+            case this.unicorn_shit: case this.unicorn_shit2: case this.unicorn_shit3: case this.unicorn_shit4:
                 return 7
-            case this.smile_shit: case this.smile_shit2: case this.dragon_mango: case this.dragon_mango2: case this.dragon_mango3:
+            case this.smile_shit4: case this.smile_shit: case this.smile_shit5: case this.smile_shit2: case this.smile_shit3: case this.dragon_mango: case this.dragon_mango2: case this.dragon_mango5: case this.dragon_mango3: case this.dragon_mango4:
                 return 10
             case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
                 return 0
+            case this.hell_bomb: case this.hell_bomb1: case this.hell_bomb2: case this.hell_bomb3:
+                return 5
             default:
                 return 'notfound'
         }
@@ -212,7 +230,7 @@ export class ListFood {
                 return -1
             case this.deadly_soup: case this.devil_heart: case this.devil_heart1:
                 return -2
-            case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3: case this.dead_bomb4: case this.dead_bomb5:
+            case this.dead_bomb: case this.dead_bomb2: case this.dead_bomb3: case this.dead_bomb4: case this.dead_bomb5: case this.dead_bomb6:
                 return -100
             default:
                 return 'notfound'
