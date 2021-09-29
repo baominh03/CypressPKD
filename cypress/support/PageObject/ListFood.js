@@ -104,6 +104,7 @@ export class ListFood {
     dragon_mango3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/28242398.png';
     dragon_mango4 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/31344057.png';
     dragon_mango5 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/21034734.png';
+    dragon_mango6 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/33964185.png';
     tomyum = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/58242256.png';
     tomyum2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/92752285.png'
     tsingtao_beer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/68415666.png';
@@ -169,6 +170,28 @@ export class ListFood {
     hell_bomb2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/85091323.png';
     hell_bomb3 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/55989230.png';
     eaten_banana = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/66529377.png';
+    floating_candy = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/50886034.png';
+    happy_cake = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/15908710.png';
+    sour_candy = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/35441977.png';
+    running = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/30114233.png';
+    running1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/69266224.png';
+    pine_surfing = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/94917307.png';
+    pine_surfing1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/45648821.png';
+    funny_mer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/89065865.png';
+    cute_soup = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/64019895.png';
+    cute_soup1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/14060708.png';
+    cookie_man = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/29769338.png';
+    cookie_man1 ='https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/64458721.png';
+    layers_bread = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/66312419.png';
+    mars_pineapple = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/80039487.png';
+    cute_hotdog = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/24185427.png';
+    cute_hotdog1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/77467202.png';
+    venus_egg = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/58405160.png';
+    venus_egg2 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/42012930.png';
+    sun_shy = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/40797661.png';
+    funny_mer = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/89065865.png';
+    pine_beach = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/66165243.png';
+
 
     convertListFoodtoEnegryNumber(url, tooltip) {
         var pos = this.getPositiveFood(url)
@@ -192,10 +215,10 @@ export class ListFood {
             } else {
                 if (nev == 'notfound') {
                     cy.log('STOP RUN: Undefined food - url: ' + url)
-                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url) 
+                    slackNotification.sendMessagetoSlackWithTag('STOP RUN: Undefined food - url: ' + url)
                     cy.contains('End run', { timeout: 100 })
                 } else {
-                    slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url) // in case not contain in array - return -1
+                    // slackNotification.sendMessagetoSlack('Negative found but not in array: ' + url) // in case not contain in array - return -1
                     return nev
                 }
             }
@@ -212,14 +235,16 @@ export class ListFood {
                 return 1
             case this.baobao4: case this.baobao3: case this.baobao8: case this.baobao5: case this.baobao6: case this.baobao7: case this.ocean_coak2: case this.spring_roll3: case this.spring_roll4: case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.ocean_coak3: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
                 return 2
-            case this.unicorn_shit: case this.unicorn_shit2: case this.unicorn_shit3: case this.unicorn_shit4:
+            case this.cute_hotdog1: case this.cute_hotdog: case this.layers_bread: case this.unicorn_shit: case this.unicorn_shit2: case this.unicorn_shit3: case this.unicorn_shit4: case this.floating_candy: case this.happy_cake:
                 return 7
-            case this.smile_shit4: case this.smile_shit: case this.smile_shit5: case this.smile_shit2: case this.smile_shit3: case this.dragon_mango: case this.dragon_mango2: case this.dragon_mango5: case this.dragon_mango3: case this.dragon_mango4:
+            case this.sour_candy: case this.smile_shit4: case this.smile_shit: case this.smile_shit5: case this.smile_shit2: case this.smile_shit3: case this.dragon_mango: case this.dragon_mango6: case this.dragon_mango2: case this.dragon_mango5: case this.dragon_mango3: case this.dragon_mango4:
                 return 10
             case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
                 return 0
-            case this.hell_bomb: case this.hell_bomb1: case this.hell_bomb2: case this.hell_bomb3:
+            case this.running1: case this.pine_beach: case this.venus_egg: case this.venus_egg2: case this.sun_shy: case this.funny_mer: case this.cute_soup1: case this.hell_bomb: case this.hell_bomb1: case this.hell_bomb2: case this.hell_bomb3: case this.running: case this.pine_surfing: case this.pine_surfing1: case this.funny_mer: case this.cute_soup: case this.cookie_man: case this.cookie_man1:
                 return 5
+            case this.mars_pineapple:
+                return 3
             default:
                 return 'notfound'
         }

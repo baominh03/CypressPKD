@@ -23,7 +23,12 @@ afterEach(function () {
 });
 
 describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
-    it('Feed 1 pet to 100 stamina', () => {
+    it('Feed 1 pet to 100 stamina', {
+        retries: {
+            runMode: 30,
+            openMode: 1,
+        },
+    }, () => {
         cy.fixture('pkdUser_01').then((petkingdom) => {
             loginPA.visitPetKingDom();
             loginPA.loginPKDScholarMode(petkingdom.email, petkingdom.password);

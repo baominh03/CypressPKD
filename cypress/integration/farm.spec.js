@@ -27,7 +27,7 @@ afterEach(function() {
 describe('First suite: Feed one 1 pet to 100 stamina', () => {
     it('Feed 1 pet to 100 stamina', {
         retries: {
-          runMode: 5,
+          runMode: 30,
           openMode: 1,
         },
       },() => {
