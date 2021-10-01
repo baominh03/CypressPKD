@@ -14,6 +14,10 @@ export class HomePagePO {
         return cy.get('.hero-info__text', { timeout: 10000 })
     }
 
+    getElementWorldSelection() {
+        return cy.get('.ld-header__icon ', { timeout: 10000 })
+    }
+
 }
 
 export const homePagePO = new HomePagePO()

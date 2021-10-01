@@ -1,8 +1,8 @@
 {
   "email": "porcorosso90@gmail.com",
   "password": "Hai@300590",
-  "primaryPet": 3,
-  "fuckPet": 2,
-  "dificulty": "easy"
+  "primaryPet": 1,
+  "fuckPet": 3,
+  "dificulty": "easy",
+  "world" : "earth"
 }
-
