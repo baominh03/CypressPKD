@@ -94,7 +94,7 @@ export class FoodStorePA {
                     } else {
                         this.selectPet(fuckPet).then(() => {
                             cy.log('###Selected Fuck pet to eat boom')
-                            slackNotification.sendMessagetoSlack('Selected Fuck pet to eat boom - pet: '+ fuckPet + ' for email: ' + email)
+                            // slackNotification.sendMessagetoSlack('Selected Fuck pet to eat boom - pet: '+ fuckPet + ' for email: ' + email)
                             foodStorePO.getElementPetStamina().then((stamina) => {
                                 foodStorePO.getElementBoughtFood().first().click().then(() => {
                                     foodStorePO.getElementFeedButton().click()

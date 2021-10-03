@@ -79,7 +79,7 @@ export class BattleFieldPA {
             })
         } else {
             cy.log('Pet said: Im tired, I need some rest zZzZzZ')
-            slackNotification.sendMsgToSlackAndTelegram('Pet said: Im tired, I need some rest zZzZzZ for email: ' + email)
+            // slackNotification.sendMsgToSlackAndTelegram('Pet said: Im tired, I need some rest zZzZzZ for email: ' + email)
         }
 
 
