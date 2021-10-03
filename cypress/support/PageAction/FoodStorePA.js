@@ -159,7 +159,7 @@ export class FoodStorePA {
                             battleFieldPA.fightEnemy(email)
                         }).then(() => {
                             // cy.fixture(jsonFile).then((petkingdom) => {
-                            slackNotification.sendMsgToSlackAndTelegram('Reach limit pet: ' + primaryPet + ' for email: ' + email)
+                            slackNotification.sendMsgToSlackTagUserAndTelegram('Finished fighting - Pet: ' + primaryPet + ' for email: ' + email)
                             // })
                         })
                     })

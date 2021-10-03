@@ -83,10 +83,10 @@ export class SlackNotification {
         this.sendMessagetoTelegram(str)
     }
 
-    // sendMsgToSlackTagUserAndTelegram(str) {
-    //     this.sendMessagetoSlackWithTag(str)
-    //     this.sendMessagetoTelegram(str)
-    // }
+    sendMsgToSlackTagUserAndTelegram(str) {
+        this.sendMessagetoSlackWithTag(str)
+        this.sendMessagetoTelegram(str)
+    }
 
     cypressInitialEnvironmentlog(email, indexPrimaryPet, indexFuckPet, slack_channel) {
         cy.log('Run email: ' + email)
