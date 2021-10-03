@@ -61,7 +61,7 @@ export class FoodStorePA {
         foodStorePO.getElementBoughtFood().first().trigger('mouseover', { timeout: 10000 }).wait(1500).then(() => {
             foodStorePO.getElementFoodToolTip().first().then((tooltip) => {
                 cy.log('#####Tooltip is: ' + tooltip.text())
-                slackNotification.sendMessagetoSlack('Get tool tip: ' + tooltip.text())
+                // slackNotification.sendMessagetoSlack('Get tool tip: ' + tooltip.text())
                 foodStorePO.getElementFoodContainItem().first().invoke('attr', 'src').then((url) => {
                     foodValue = listFood.convertListFoodtoEnegryNumber(url, tooltip.text())
                     cy.log('######URL is: ' + url)
@@ -122,7 +122,7 @@ export class FoodStorePA {
                     }
                 })
             } else {
-                slackNotification.sendMsgToSlackAndTelegram('Delay 8 minutes - pet: ' + primaryPet + ' for email: ' + email)
+                slackNotification.sendMsgToSlackAndTelegram('Delay 9 minutes - pet: ' + primaryPet + ' for email: ' + email)
                 this.selectPet(primaryPet).then(() => {
                     foodStorePO.getElementPetStamina().then((actual) => {
                         let strMsg = 'CURRENT STAMINA: ' + actual.text() + ' - Pet: ' + primaryPet + ' for email: ' + email
@@ -130,8 +130,8 @@ export class FoodStorePA {
                         slackNotification.sendMsgToSlackAndTelegram(strMsg)
                     })
                 })
-                cy.log('###===========### DELAY 8 MINUTES ###===========### DELAY 8 MINUTES ###===========')
-                cy.wait(480000)
+                cy.log('###===========### DELAY 9 MINUTES ###===========### DELAY 9 MINUTES ###===========')
+                cy.wait(540000)
             }
         })
 

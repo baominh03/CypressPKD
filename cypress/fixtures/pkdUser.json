@@ -2,9 +2,9 @@
   "email": "minhbao03@live.com",
   "password": "Baobao@2709",
   "primaryPet": 2,
-  "fuckPet": 3,
+  "fuckPet": 1,
   "dificulty": "easy",
-  "world" : "earth",
+  "world" : "mars",
   "petLimit": {
     "pet1": 0,
     "pet2": 1,
