@@ -2,7 +2,8 @@
   "email": "letranmyhanh2212@gmail.com",
   "password": "Baobao@2709",
   "primaryPet": 2,
-  "fuckPet": 3,
+  "fuckPet": 4,
   "dificulty": "easy",
-  "world" : "mars"
+  "world" : "mars",
+  "numberOfPets" : 4
 }

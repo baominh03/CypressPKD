@@ -98,7 +98,7 @@ export class FoodStorePA {
                             foodStorePO.getElementPetStamina().then((stamina) => {
                                 foodStorePO.getElementBoughtFood().first().click().then(() => {
                                     foodStorePO.getElementFeedButton().click()
-                                    slackNotification.sendMessagetoSlack('Pet:' + fuckPet + ' with stamina: '+ stamina.text()) + ' eat negative food'
+                                    slackNotification.sendMessagetoSlack('Pet:' + fuckPet + ' with stamina: ' + stamina.text()) + ' eat negative food'
                                     cy.log('###Clicked Feed for Fuck pet ###')
                                 })
                             })
@@ -107,7 +107,7 @@ export class FoodStorePA {
                 })
 
             })
-            
+
         })
     }
 
@@ -170,6 +170,125 @@ export class FoodStorePA {
             this.feedThePetTo100(primaryPet, fuckPet, dificultLevel = dificultLevel, email)
         })
     }
+
+
+    findFuckPetLater(pathJsonFile, fuckPet) {
+        cy.readFile(pathJsonFile).then((json) => {
+            if (fuckPet = 1) return 1
+            else if (fuckPet = json.petLimit.length) return (json.petLimit.length - 1)
+            else return fuckPet + 1
+        })
+    }
+
+    // selectPetToRun(pathJsonFile, fuckPet, difficultLevel, email) {
+    //     cy.readFile(pathJsonFile).then((json) => {
+    //         let i = 0
+    //         let fuckPetLater
+    //         const promise = new Promise((resolve, reject) => {
+    //             resolve(fuckPetLater = this.findFuckPetLater(pathJsonFile, fuckPet));
+    //         });
+    //         promise.then((fuckPetLater) => {
+    //             for (var key in json.petLimit) { // loop to check each pet is reach daily limit or not
+    //                 if (i++ != (fuckPet - 1)) { // check is that fuckPet
+    //                     if (json.petLimit[key] == 0) { //check pet still not reach daily limit = 0
+    //                         if (this.feedThenFightUntillLimit(i++, fuckPet, difficultLevel, email) == true) {
+    //                             cy.log('Set ' + key + 'to limit')
+    //                             json.petLimit[key] = 1
+    //                             cy.writeFile(pathJsonFile, json)
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //             homePagePA.selectBattleField()
+    //             battleFieldPA.changePetToFight(fuckPetLater)
+    //             cy.wait(6000).then(() => {
+    //                 battleFieldPA.selectEnemies(difficultLevel)
+    //             }).then(() => {
+    //                 cy.wait(1000).then(() => {
+    //                     battleFieldPA.fightEnemy(email)
+    //                 })
+    //                 homePagePA.selectFoodStore()
+    //                 this.feedThenFightUntillLimit(fuckPet, fuckPetLater, difficultLevel, email)
+
+    //             })
+    //         });
+
+    //     })
+    // }
+
+    selectPetToRun(numberOfPets, fuckPet, email) {
+        for (let i = 0; i < numberOfPets; i++) {
+            cy.log('i = ' + i)
+            if (i !== (fuckPet - 1)) { // check is that fuckPet
+                this.feedThenFightUntillMaxStamina(i + 1, fuckPet, email)
+            }
+        }
+    }
+
+
+    feedThenFightUntillMaxStamina(primaryPet, fuckPet, email) {
+        let result = false
+        this.selectPet(primaryPet).then(() => {
+            foodStorePO.getElementPetStamina().then((stamina) => {
+                cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
+                if (stamina.text().split('/')[0] < 100) {
+                    cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
+                    this.clickToBuyFood()
+                    this.buyFoodItemFromShop()
+                    this.clickGoHomeButton()
+                    this.feedThePet(primaryPet, fuckPet, email)
+                    this.feedThenFightUntillMaxStamina(primaryPet, fuckPet, email)
+                } else {
+                    slackNotification.sendMsgToSlackAndTelegram('Max Stamina - pet: ' + primaryPet + ' for email: ' + email)
+                }
+            })
+        })
+    }
+    // feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel, email) {
+    //     let result = false
+    //     this.selectPet(primaryPet).then(() => {
+    //         foodStorePO.getElementPetStamina().then((stamina) => {
+    //             cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
+    //             if (stamina.text().split('/')[0] < 100) {
+    //                 cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
+    //                 this.clickToBuyFood()
+    //                 this.buyFoodItemFromShop()
+    //                 this.clickGoHomeButton()
+    //                 this.feedThePet(primaryPet, fuckPet, email)
+    //                 this.feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel = dificultLevel, email = email)
+    //             } else {
+    //                 slackNotification.sendMsgToSlackAndTelegram('Go to fight - pet: ' + primaryPet + ' for email: ' + email)
+    //                 homePagePA.selectBattleField()
+    //                 battleFieldPA.changePetToFight(primaryPet)
+    //                 cy.wait(6000).then(() => {
+    //                     battleFieldPA.selectEnemies(dificultLevel)
+    //                 }).then(() => {
+    //                     cy.wait(1000).then(async function () {
+    //                         if (battleFieldPA.fightEnemyAndCheckLimit(email)) {
+    //                             cy.log('return True feedThenFightUntillLimit ')
+    //                             result = true
+    //                         } else {
+    //                             homePagePA.selectFoodStoreDirectly();
+    //                             // if (!result) {
+    //                             cy.log('false goi tiep ')
+    //                             foodStorePA.feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel, email)
+    //                         }
+    //                     })
+
+
+    //                     // cy.fixture(jsonFile).then((petkingdom) => {
+    //                     // slackNotification.sendMsgToSlackAndTelegram('Reach limit pet: ' + primaryPet + ' for email: ' + email)
+    //                     // })
+    //                 })
+
+    //             }
+    //         })
+    //     }).then(() => {
+    //         cy.log('return True feedThenFightUntillLimit '+ result)
+    //         return result
+    //     })
+
+    // }
 
 
 
