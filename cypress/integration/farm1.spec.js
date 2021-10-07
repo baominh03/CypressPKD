@@ -9,7 +9,7 @@ beforeEach(function () {
     cy.fixture('pkdUser_01').then((petkingdom) => {
         Cypress.config('slack_channel', '#a_farmer_01')
         // slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email)
-        slackNotification.cypressInitialEnvironmentlog(petkingdom.email, petkingdom.primaryPet, petkingdom.fuckPet, Cypress.config('slack_channel'))
+        slackNotification.cypressInitialEnvironmentlog(petkingdom.email, petkingdom.primaryPet, petkingdom.fuckPet, Cypress.config('slack_channel'), petkingdom.autoFeed100)
     })
 });
 
@@ -32,10 +32,10 @@ describe('pkdUser_01: Feed one 1 pet to 100 stamina', () => {
         cy.fixture('pkdUser_01').then((petkingdom) => {
             loginPA.visitPetKingDom();
             loginPA.loginPKDScholarMode(petkingdom.email, petkingdom.password);
-            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email + ' - select world: ' + petkingdom.world)
-            homePagePA.selectWorld(petkingdom.world)
+            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email + ' - select world: ' + petkingdom.world);
+            homePagePA.selectWorld(petkingdom.world);
             homePagePA.selectFoodStore();
-            foodStorePA.feedThePetTo100(petkingdom.primaryPet, petkingdom.fuckPet, petkingdom.dificulty, petkingdom.email)
+            foodStorePA.autofarm(petkingdom.primaryPet, petkingdom.fuckPet, petkingdom.dificulty, petkingdom.email, petkingdom.numberOfPets, petkingdom.autoFeed100, petkingdom.world);
         })
     })
 

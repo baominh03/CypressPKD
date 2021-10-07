@@ -64,16 +64,16 @@ export class FoodStorePA {
                 // slackNotification.sendMessagetoSlack('Get tool tip: ' + tooltip.text())
                 foodStorePO.getElementFoodContainItem().first().invoke('attr', 'src').then((url) => {
                     foodValue = listFood.convertListFoodtoEnegryNumber(url, tooltip.text())
-                    cy.log('######URL is: ' + url)
-                    slackNotification.sendMessagetoSlack('URL is: ' + url)
+                    // cy.log('######URL is: ' + url)
+                    // slackNotification.sendMessagetoSlack('URL is: ' + url)
                     cy.log('###Food Recovery Number: ' + foodValue)
-                    slackNotification.sendMessagetoSlack('Food Recovery Number: ' + foodValue + ' - Pet: ' + primaryPet + ' for email: ' + email)
+                    // slackNotification.sendMessagetoSlack('Food Recovery Number: ' + foodValue + ' - Pet: ' + primaryPet + ' for email: ' + email)
                     if (Number(foodValue) >= 0) {
                         this.selectPet(primaryPet).then(() => {
                             cy.log('###Selected primary pet')
                             foodStorePO.getElementPetStamina().then((stamina) => {
                                 cy.log('###STAMINA BEFORE: [' + stamina.text() + ']')
-                                slackNotification.sendMessagetoSlack('STAMINA BEFORE: ' + stamina.text() + ' - Pet: ' + primaryPet + ' for email: ' + email)
+                                // slackNotification.sendMessagetoSlack('STAMINA BEFORE: ' + stamina.text() + ' - Pet: ' + primaryPet + ' for email: ' + email)
                                 if (stamina.text().split('/')[0] < 100) {
                                     foodStorePO.getElementPetStamina().should('be.visible').then(() => {
                                         foodStorePO.getElementBoughtFood().first().click().then(() => {
@@ -82,7 +82,7 @@ export class FoodStorePA {
                                                 foodStorePO.getElementPetStamina().then((actual) => {
                                                     let strMsg = 'ACTUAL STAMINA: ' + actual.text() + ' - Pet: ' + primaryPet + ' for email: ' + email
                                                     cy.log(strMsg)
-                                                    slackNotification.sendMessagetoSlack(strMsg)
+                                                    // slackNotification.sendMessagetoSlack(strMsg)
                                                 })
                                             })
                                             cy.log('###PRIMARY PET STAMINA AFTER FEEDING: [' + (Number(stamina.text().split('/')[0]) + Number(foodValue)) + '/100]')
@@ -291,6 +291,15 @@ export class FoodStorePA {
     // }
 
 
+    autofarm(primaryPet, fuckPet, dificultLevel, email, numberOfPets, autoFarm, world) {
+        if (!autoFarm) {
+            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + email + ' - select world: ' + world)
+            this.feedThePetTo100(primaryPet, fuckPet, dificultLevel, email)
+        } else {
+            slackNotification.sendMsgToSlackAndTelegram('Start game: All pets reached daily limit - Go feed them till 100 stamina ' + email + ' - select world: ' + world)
+            this.selectPetToRun(numberOfPets, fuckPet, email)
+        }
+    }
 
 }
 export const foodStorePA = new FoodStorePA()

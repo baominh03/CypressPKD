@@ -45,7 +45,10 @@ export class HomePagePA {
             default:
                 index = 0
         }
-        homePagePO.getElementWorldSelection().eq(index).click()
+        cy.wait(5000).then(() => {
+            homePagePO.getElementWorldSelection().eq(index).click()
+        })
+
     }
 
 }

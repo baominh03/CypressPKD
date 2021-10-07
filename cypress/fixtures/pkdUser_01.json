@@ -1,9 +1,10 @@
 {
   "email": "letranmyhanh2212@gmail.com",
   "password": "Baobao@2709",
-  "primaryPet": 2,
+  "primaryPet": 4,
   "fuckPet": 4,
   "dificulty": "easy",
   "world" : "mars",
-  "numberOfPets" : 4
+  "numberOfPets" : 4,
+  "autoFeed100" : true
 }

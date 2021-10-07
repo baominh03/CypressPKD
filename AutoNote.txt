@@ -12,10 +12,3 @@ npx cypress run --spec 'cypress/integration/farm.spec.js' --headed --browser chr
 npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed --browser chrome --no-exit
 npx cypress run --spec 'cypress/integration/farm2.spec.js' --headed --browser chrome --no-exit
 npx cypress run --spec 'cypress/integration/farm3.spec.js' --headed --browser chrome --no-exit
-
-
-
-npx cypress run --spec 'cypress/integration/autoflow/autoFarm.spec.js' --headed --browser chrome --no-exit
-npx cypress run --spec 'cypress/integration/autoflow/autoFarm01.spec.js' --headed --browser chrome --no-exit
-npx cypress run --spec 'cypress/integration/autoflow/autoFarm02.spec.js' --headed --browser chrome --no-exit
-npx cypress run --spec 'cypress/integration/autoflow/autoFarm03.spec.js' --headed --browser chrome --no-exit

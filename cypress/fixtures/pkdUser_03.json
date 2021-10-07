@@ -1,9 +1,10 @@
 {
   "email": "myhat_wolf2709@yahoo.com",
   "password": "Baobao@2709",
-  "primaryPet": 3,
+  "primaryPet": 4,
   "fuckPet": 1,
   "dificulty": "easy",
   "world" : "mars",
-  "numberOfPets" : 4
+  "numberOfPets" : 4,
+  "autoFeed100" : true
 }
