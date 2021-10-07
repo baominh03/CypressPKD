@@ -6,7 +6,7 @@
   "pageLoadTimeout": 120000,
   "slack_channel": "#notification",
   "staminaThreshold": 80,
-  "notification": false,
+  "notification": true,
   "env": {
     "slack_token": "eG94Yi0yNTMzODc4OTM1OTI0LTI1MzM5NjA0ODM2MjAtZVNOaVZxYnBzNmpTZ0lFcUNmU2VGYmY3",
     "slack_icon_emoji": ":cv-imange:",
