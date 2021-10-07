@@ -6,7 +6,7 @@
   "dificulty": "easy",
   "world" : "mars",
   "numberOfPets" : 4,
-  "autoFeed100" : false,
+  "autoFeed100" : true,
   "petLimit": {
     "pet1": 0,
     "pet2": 1,
