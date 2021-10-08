@@ -1,10 +1,10 @@
 {
   "email": "vuquanghaihd@gmail.com",
   "password": "Hai@300590",
-  "primaryPet": 4,
-  "fuckPet": 3,
+  "primaryPet": 1,
+  "fuckPet": 4,
   "dificulty": "easy",
   "world" : "mars",
   "numberOfPets" : 4,
-  "autoFeed100" : false
+  "autoFeed100" : true
 }

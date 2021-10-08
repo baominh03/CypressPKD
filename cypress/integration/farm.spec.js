@@ -34,7 +34,6 @@ describe('First suite: Feed one 1 pet to 100 stamina', () => {
     cy.fixture('pkdUser').then((petkingdom) => {
       loginPA.visitPetKingDom();
       loginPA.loginPKDScholarMode(petkingdom.email, petkingdom.password);
-      slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + petkingdom.email + ' - select world: ' + petkingdom.world);
       homePagePA.selectWorld(petkingdom.world);
       homePagePA.selectFoodStore();
       foodStorePA.autofarm(petkingdom.primaryPet, petkingdom.fuckPet, petkingdom.dificulty, petkingdom.email, petkingdom.numberOfPets, petkingdom.autoFeed100, petkingdom.world);
