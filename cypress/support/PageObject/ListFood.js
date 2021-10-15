@@ -221,10 +221,26 @@ export class ListFood {
     funny_mer_new = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/76054447.png';
     sun_shy_new = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/74377797.png';
     mercury_bake = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/48356237.png';
-
-
-
-
+    venus_pub = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/54182092.png';
+    unicore = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/79242027.png';
+    shasimi_mars = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/70413639.png';
+    bubble_milk = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/90998529.png';
+    bubble_milk1 = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/30248304.png';
+    cute_peaches = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/66583668.png';
+    cereal = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/81798162.png';
+    galaxy_liquid = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/24190591.png';
+    snape_jupiter = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/63567065.png';
+    egg_plant = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/44879171.png';
+    angey_fried = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/64417850.png';
+    dogmurt = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/39822497.png';
+    mars_shrimp = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/44615160.png';
+    sun_sausage = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/96912393.png';
+    mercury_kale = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/29174248.png';
+    mochi_mochi = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/57865611.png';
+    lemon_nus = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/88053210.png';
+    dancing_mars = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/34726080.png';
+    dragon_bone = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/61165069.png';
+    mercury_salt = 'https://cms-pkd-image.s3.ap-southeast-1.amazonaws.com/31745635.png';
 
 
     convertListFoodtoEnegryNumber(url, tooltip) {
@@ -269,9 +285,9 @@ export class ListFood {
                 return 1
             case this.baobao4: case this.baobao3: case this.baobao8: case this.baobao5: case this.baobao6: case this.baobao7: case this.ocean_coak2: case this.spring_roll3: case this.spring_roll4: case this.whiskey_77: case this.e_toilet2: case this.chivas_94: case this.baobao: case this.baobao2: case this.baobao_jupiter: case this.e_toilet: case this.ocean_coak: case this.ocean_coak3: case this.s_dragon: case this.spring_roll2: case this.spring_rolls:
                 return 2
-            case this.layers_bread_new: case this.baby_milk1: case this.baby_milk: case this.layers_bread1: case this.cute_hotdog1: case this.cute_hotdog: case this.layers_bread: case this.unicorn_shit: case this.unicorn_shit2: case this.unicorn_shit3: case this.unicorn_shit4: case this.floating_candy: case this.floating_candy1: case this.happy_cake: case this.happy_cake1:
+            case this.egg_plant: case this.layers_bread_new: case this.baby_milk1: case this.baby_milk: case this.layers_bread1: case this.cute_hotdog1: case this.cute_hotdog: case this.layers_bread: case this.unicorn_shit: case this.unicorn_shit2: case this.unicorn_shit3: case this.unicorn_shit4: case this.floating_candy: case this.floating_candy1: case this.happy_cake: case this.happy_cake1:
                 return 7
-            case this.mercury_bake: case this.venus_bread: case this.mecury_cream1: case this.mecury_cream: case this.candle_cake: case this.candle_cake1: case this.sour_candy_new: case this.sour_candy: case this.sour_candy1: case this.smile_shit4: case this.smile_shit: case this.smile_shit5: case this.smile_shit2: case this.smile_shit3: case this.dragon_mango: case this.dragon_mango6: case this.dragon_mango2: case this.dragon_mango5: case this.dragon_mango3: case this.dragon_mango4:
+            case this.mercury_salt: case this.mochi_mochi: case this.dogmurt: case this.snape_jupiter: case this.unicore: case this.venus_pub: case this.mercury_bake: case this.venus_bread: case this.mecury_cream1: case this.mecury_cream: case this.candle_cake: case this.candle_cake1: case this.sour_candy_new: case this.sour_candy: case this.sour_candy1: case this.smile_shit4: case this.smile_shit: case this.smile_shit5: case this.smile_shit2: case this.smile_shit3: case this.dragon_mango: case this.dragon_mango6: case this.dragon_mango2: case this.dragon_mango5: case this.dragon_mango3: case this.dragon_mango4:
                 return 10
             case this.tsingtao_beer: case this.diet_set: case this.sweet_candy:
                 return 0
@@ -279,16 +295,20 @@ export class ListFood {
                 return 5
             case this.mars_pineapple: case this.mars_pineapple1:
                 return 3
-            case this.candle_cake_surf:
+            case this.angey_fried: case this.candle_cake_surf: case this.cute_peaches:
                 return 11
-            case this.cute_soup_new: case this.sun_shy_new:
+            case this.dragon_bone: case this.lemon_nus: case this.sun_sausage: case this.cute_soup_new: case this.sun_shy_new:
                 return 12
-            case this.floating_candy_donut:
+            case this.dancing_mars: case this.floating_candy_donut:
                 return 8
-            case this.venus_egg_new:
+            case this.mars_shrimp: case this.venus_egg_new:
                 return 9
-            case this.funny_mer_new: case this.cookie_man_new:
+            case this.mercury_kale: case this.funny_mer_new: case this.cookie_man_new: case this.shasimi_mars: case this.bubble_milk: case this.bubble_milk1:
                 return 15
+            case this.cereal:
+                return 14
+            case this.galaxy_liquid:
+                return 13
             default:
                 return 'notfound'
         }

@@ -137,7 +137,7 @@ export class FoodStorePA {
 
     }
 
-    feedThePetTo100(primaryPet, fuckPet, dificultLevel, email) {
+    feedThePetTo100(primaryPet, fuckPet, dificultLevel, email) { 
         this.selectPet(primaryPet).then(() => {
             foodStorePO.getElementPetStamina().then((stamina) => {
                 cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
@@ -244,60 +244,83 @@ export class FoodStorePA {
             })
         })
     }
-    // feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel, email) {
-    //     let result = false
-    //     this.selectPet(primaryPet).then(() => {
-    //         foodStorePO.getElementPetStamina().then((stamina) => {
-    //             cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
-    //             if (stamina.text().split('/')[0] < 100) {
-    //                 cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
-    //                 this.clickToBuyFood()
-    //                 this.buyFoodItemFromShop()
-    //                 this.clickGoHomeButton()
-    //                 this.feedThePet(primaryPet, fuckPet, email)
-    //                 this.feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel = dificultLevel, email = email)
-    //             } else {
-    //                 slackNotification.sendMsgToSlackAndTelegram('Go to fight - pet: ' + primaryPet + ' for email: ' + email)
-    //                 homePagePA.selectBattleField()
-    //                 battleFieldPA.changePetToFight(primaryPet)
-    //                 cy.wait(6000).then(() => {
-    //                     battleFieldPA.selectEnemies(dificultLevel)
-    //                 }).then(() => {
-    //                     cy.wait(1000).then(async function () {
-    //                         if (battleFieldPA.fightEnemyAndCheckLimit(email)) {
-    //                             cy.log('return True feedThenFightUntillLimit ')
-    //                             result = true
-    //                         } else {
-    //                             homePagePA.selectFoodStoreDirectly();
-    //                             // if (!result) {
-    //                             cy.log('false goi tiep ')
-    //                             foodStorePA.feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel, email)
-    //                         }
-    //                     })
 
 
-    //                     // cy.fixture(jsonFile).then((petkingdom) => {
-    //                     // slackNotification.sendMsgToSlackAndTelegram('Reach limit pet: ' + primaryPet + ' for email: ' + email)
-    //                     // })
-    //                 })
+    selectPetToAutoFeedAndFight(numberOfPets, fuckPet, dificultLevel, email) {
+        for (let i = 0; i < numberOfPets; i++) {
+            cy.log('i = ' + i)
+            if (i !== (fuckPet - 1)) { // check is that fuckPet
+                this.feedThenFightUntillLimit(i + 1, fuckPet, dificultLevel, email)
+            }
+        }
+    }
 
-    //             }
-    //         })
-    //     }).then(() => {
-    //         cy.log('return True feedThenFightUntillLimit '+ result)
-    //         return result
-    //     })
+    feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel, email) {
+        let result = false;
+        this.selectPet(primaryPet).then(() => {
+            foodStorePO.getElementPetStamina().then((stamina) => {
+                cy.log('PRIMARY PET STAMINA: [' + stamina.text() + ']')
+                if (stamina.text().split('/')[0] < 1) {
+                    cy.log('Keep you pet get feeded - Stamia: [' + stamina.text().split('/')[0] + ']')
+                    this.clickToBuyFood();
+                    this.buyFoodItemFromShop();
+                    this.clickGoHomeButton();
+                    this.feedThePet(primaryPet, fuckPet, email);
+                    this.feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel = dificultLevel, email = email);
+                } else {
+                    slackNotification.sendMsgToSlackAndTelegram('Go to fight - pet: ' + primaryPet + ' for email: ' + email)
+                    homePagePA.selectBattleField();
+                    battleFieldPA.changePetToFight(primaryPet);
+                    cy.wait(6000).then(() => {
+                        battleFieldPA.selectEnemies(dificultLevel);
+                    }).then(() => {
 
-    // }
+
+                        // cy.fixture(jsonFile).then((petkingdom) => {
+                        // slackNotification.sendMsgToSlackAndTelegram('Reach limit pet: ' + primaryPet + ' for email: ' + email)
+                        // })
+
+                        cy.wait(1000).then(async function () {
+                            if (battleFieldPA.fightEnemyAndCheckLimit(email)) {
+                                cy.log('return True feedThenFightUntillLimit ')
+                                result = true
+                            } else {
+                                homePagePA.selectFoodStoreDirectly();
+                                // if (!result) {
+                                cy.log('false goi tiep ')
+                                foodStorePA.feedThenFightUntillLimit(primaryPet, fuckPet, dificultLevel, email)
+                            }
+                        })
+                    })
+
+                };
+            });
+        }).then(() => {
+            cy.log('return True feedThenFightUntillLimit ' + result);
+            return result;
+        });
+
+    };
 
 
     autofarm(primaryPet, fuckPet, dificultLevel, email, numberOfPets, autoFarm, world) {
         if (!autoFarm) {
-            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + email + ' - select world: ' + world)
-            this.feedThePetTo100(primaryPet, fuckPet, dificultLevel, email)
+            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + email + ' - select world: ' + world);
+            this.feedThePetTo100(primaryPet, fuckPet, dificultLevel, email);
         } else {
-            slackNotification.sendMsgToSlackAndTelegram('Start game: All pets reached daily limit - Go feed them till 100 stamina ' + email + ' - select world: ' + world)
-            this.selectPetToRun(numberOfPets, fuckPet, email)
+            slackNotification.sendMsgToSlackAndTelegram('Start game: All pets reached daily limit - Go feed them till 100 stamina ' + email + ' - select world: ' + world);
+            this.selectPetToRun(numberOfPets, fuckPet, email);
+        }
+    }
+
+
+    autofarm1(primaryPet, fuckPet, dificultLevel, email, numberOfPets, autoFarm, world) {
+        if (!autoFarm) {
+            slackNotification.sendMsgToSlackAndTelegram('Start game for email: ' + email + ' - select world: ' + world);
+            this.selectPetToAutoFeedAndFight(numberOfPets, fuckPet, dificultLevel, email);
+        } else {
+            slackNotification.sendMsgToSlackAndTelegram('Start game: All pets reached daily limit - Go feed them till 100 stamina ' + email + ' - select world: ' + world);
+            this.selectPetToRun(numberOfPets, fuckPet, email);
         }
     }
 

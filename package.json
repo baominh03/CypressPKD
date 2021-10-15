@@ -13,7 +13,7 @@
   "author": "BaoLe",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^8.5.0",
+    "cypress": "^8.6.0",
     "cypress-browser-extension-plugin": "^0.1.0"
   },
   "dependencies": {
