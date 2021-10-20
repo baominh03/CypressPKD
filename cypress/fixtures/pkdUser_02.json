@@ -1,0 +1,10 @@
+{
+  "email": "",
+  "password": "",
+  "primaryPet": 4,
+  "fuckPet": 2,
+  "dificulty": "easy",
+  "world" : "mars",
+  "numberOfPets" : 4,
+  "autoFeed100" : true
+}

@@ -1,0 +1,14 @@
+island option between excite comfort bullet swallow ocean dice fame damp room
+
+
+Binance Smart Chain
+https://bsc-dataseed.binance.org/
+56
+BNB
+https://bscscan.com
+
+
+npx cypress run --spec 'cypress/integration/farm.spec.js' --headed --browser chrome --no-exit
+npx cypress run --spec 'cypress/integration/farm1.spec.js' --headed --browser chrome --no-exit
+npx cypress run --spec 'cypress/integration/farm2.spec.js' --headed --browser chrome --no-exit
+npx cypress run --spec 'cypress/integration/farm3.spec.js' --headed --browser chrome --no-exit
