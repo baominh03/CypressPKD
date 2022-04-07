@@ -8,10 +8,10 @@
   "staminaThreshold": 100,
   "notification": true,
   "env": {
-    "slack_token": "eG94Yi0yNTMzODc4OTM1OTI0LTI1MzM5NjA0ODM2MjAtZVNOaVZxYnBzNmpTZ0lFcUNmU2VGYmY3",
+    "slack_token": "",
     "slack_icon_emoji": ":cv-imange:",
-    "slack_user": "VTAyRjJUUUpXMU0=",
-    "telegram_token": "Ym90MjAxNjI1NTc3NzpBQUdIVFpnNnNvYU5jMkNfb3ZFdm5mNlAzMEowY2Q0R0hHOA==",
-    "telegram_group_id": "LTU1MDI0OTA2Mg=="
+    "slack_user": "",
+    "telegram_token": "==",
+    "telegram_group_id": "=="
   }
 }
